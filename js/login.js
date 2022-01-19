@@ -2,7 +2,7 @@ var x = 3;
 
 function logearse() {
     if (document.getElementById('inputPassword').value == 'ciclo59' && document.getElementById('inputEmail').value == 'grupo4') {
-        location.replace("index.html")
+        location.replace("vista_report.html")
 
     } else {
 
