@@ -7,10 +7,10 @@ function logearse() {
     } else {
 
         if (x == 0) {
-            document.getElementById('times').innerHTML = "No hay mas intentos , Recarge la pagina para volver a intentarlo";
+            document.getElementById('times').innerHTML = "No hay más intentos , Recarge la pagina para volver a intentarlo";
 
         } else {
-            document.getElementById('times').innerHTML = "Numero de Intento " + x;
+            document.getElementById('times').innerHTML = "Intentos Restantes: " + x;
             x = x - 1;
         }
 
