@@ -108,14 +108,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <h3 class="w3l-titles">TABLAS | REPORTES</h3>
             <p class="w3ls-p">REPORTES DE LA CONCESIONARIA LATINOAMERICANA: </p>
-          
+          <!--Inicio tabla-->
+            <div class="container my-5 text-center">
+                
+                    <input type="submit" value="Obtenerr" class="btn btn-danger w-100" id="bSubmit">
+                    <div class="mt-5">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre_producto</th>
+                                    <th scope="col">Costos</th>
+                                    <th scope="col">Ciudad</th>
+                                    <th scope="col">Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contenido">
 
-
-
-
-
-
-           
+                            </tbody>
+                        </table>
+                    </div>
+                
+            </div>
+            <!--Fin tabla-->
         </div>
     </div>
 
@@ -206,6 +221,74 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
     <!-- //scrolling script -->
+
+    <!-- //json datos script -->
+    <script>
+        const bSubmit = document.querySelector('#bSubmit');
+        traer()
+        bSubmit.addEventListener('click', () => {
+            traer();
+        });
+        function traer() {
+            fetch('tabla.json', {method: 'GET'})
+                .then(res => res.json())
+                .then(data => {
+                    const contenido = document.querySelector('#contenido');
+                    // console.log(datos)
+                    tabla(datos)
+                })
+        }
+
+        function tabla(datos) {
+            // console.log(datos)
+            contenido.innerHTML = ''
+            for (let valor of datos) {
+                // console.log(valor.nombre)
+                contenido.innerHTML += `
+                
+                <tr>
+                    <th scope="row">${ valor.id }</th>
+                    <td>${ valor.Nombre_producto }</td>
+                    <td>${ valor.Costos }</td>
+                    <td>${ valor.Ciudad }</td>
+                    <td>${ valor.Fecha }</td>
+                </tr>
+                
+                `
+            }
+
+
+
+        /*var contenido = document.querySelector('#contenido')
+
+        function traer() {
+            fetch('tabla.json')
+                .then(res => res.json())
+                .then(datos => {
+                    // console.log(datos)
+                    tabla(datos)
+                })
+        }
+
+        function tabla(datos) {
+            // console.log(datos)
+            contenido.innerHTML = ''
+            for (let valor of datos) {
+                // console.log(valor.nombre)
+                contenido.innerHTML += `
+                
+                <tr>
+                    <th scope="row">${ valor.id }</th>
+                    <td>${ valor.Nombre_producto }</td>
+                    <td>${ valor.Costos }</td>
+                    <td>${ valor.Ciudad }</td>
+                    <td>${ valor.Fecha }</td>
+                </tr>
+                
+                `
+            }*/
+        }
+    </script>
 </body>
 
 </html>
