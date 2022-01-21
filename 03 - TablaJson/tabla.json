@@ -1,0 +1,281 @@
+[{
+        "id": 1,
+        "Nombre_producto": "Computadora",
+        "Costos": "7000",
+        "Ciudad": "Quito",
+        "Fecha": "2014-02-01"
+    },
+    {
+        "id": 2,
+        "Nombre_producto": "Computadora",
+        "Costos": 4500,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2014-07-01"
+    },
+    {
+        "id": 3,
+        "Nombre_producto": "Computadora",
+        "Costos": 8030,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2014-09-01"
+    },
+    {
+        "id": 4,
+        "Nombre_producto": "Computadora",
+        "Costos": 4600,
+        "Ciudad": "Quito",
+        "Fecha": "2014-02-01"
+    },
+    {
+        "id": 5,
+        "Nombre_producto": "Computadora",
+        "Costos": 7629,
+        "Ciudad": "Quito",
+        "Fecha": "2017-12-01"
+    },
+    {
+        "id": 6,
+        "Nombre_producto": "Computadora",
+        "Costos": 5000,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2020-11-01"
+    },
+    {
+        "id": 7,
+        "Nombre_producto": "Computadora",
+        "Costos": 5890,
+        "Ciudad": "Quito",
+        "Fecha": "2017-11-01"
+    },
+    {
+        "id": 8,
+        "Nombre_producto": "Computadora",
+        "Costos": 4086,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2017-05-01"
+    },
+    {
+        "id": 9,
+        "Nombre_producto": "Computadora",
+        "Costos": 2990,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2020-01-01"
+    },
+    {
+        "id": 10,
+        "Nombre_producto": "Computadora",
+        "Costos": 7798,
+        "Ciudad": "Quito",
+        "Fecha": "2020-06-01"
+    },
+    {
+        "id": 11,
+        "Nombre_producto": "Computadora",
+        "Costos": 4993,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2020-06-01"
+    },
+    {
+        "id": 12,
+        "Nombre_producto": "Computadora",
+        "Costos": 4993,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2020-09-01"
+    },
+    {
+        "id": 13,
+        "Nombre_producto": "Computadora",
+        "Costos": 4993,
+        "Ciudad": "Quito",
+        "Fecha": "2020-04-01"
+    },
+    {
+        "id": 14,
+        "Nombre_producto": "Computadora",
+        "Costos": 4993,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2020-03-01"
+    },
+    {
+        "id": 15,
+        "Nombre_producto": "Computadora",
+        "Costos": 4993,
+        "Ciudad": "Quito",
+        "Fecha": "2015-06-01"
+    },
+    {
+        "id": 16,
+        "Nombre_producto": "Laptop",
+        "Costos": 3094,
+        "Ciudad": "Quito",
+        "Fecha": "2014-07-01"
+    },
+    {
+        "id": 17,
+        "Nombre_producto": "Laptop",
+        "Costos": 2873,
+        "Ciudad": "Quito",
+        "Fecha": "2014-04-01"
+    },
+    {
+        "id": 18,
+        "Nombre_producto": "Laptop",
+        "Costos": 3832,
+        "Ciudad": "Quito",
+        "Fecha": "2017-06-01"
+    },
+    {
+        "id": 19,
+        "Nombre_producto": "Laptop",
+        "Costos": 3832,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2017-08-01"
+    },
+    {
+        "id": 20,
+        "Nombre_producto": "Laptop",
+        "Costos": 1093,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2017-06-01"
+    },
+    {
+        "id": 21,
+        "Nombre_producto": "Laptop",
+        "Costos": 1093,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2019-02-01"
+    },
+    {
+        "id": 22,
+        "Nombre_producto": "Laptop",
+        "Costos": 4000,
+        "Ciudad": "Quito",
+        "Fecha": "2020-12-01"
+    },
+    {
+        "id": 23,
+        "Nombre_producto": "Laptop",
+        "Costos": 1883,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2019-12-01"
+    },
+    {
+        "id": 24,
+        "Nombre_producto": "Laptop",
+        "Costos": 4372,
+        "Ciudad": "Quito",
+        "Fecha": "2016-02-01"
+    },
+    {
+        "id": 25,
+        "Nombre_producto": "Laptop",
+        "Costos": 3904,
+        "Ciudad": "Quito",
+        "Fecha": "2016-11-01"
+    },
+    {
+        "id": 26,
+        "Nombre_producto": "Laptop",
+        "Costos": 3904,
+        "Ciudad": "Quito",
+        "Fecha": "2016-08-01"
+    },
+    {
+        "id": 27,
+        "Nombre_producto": "Laptop",
+        "Costos": 3904,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2018-07-01"
+    },
+    {
+        "id": 28,
+        "Nombre_producto": "Celular",
+        "Costos": 1990,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2016-02-01"
+    },
+    {
+        "id": 29,
+        "Nombre_producto": "Celular",
+        "Costos": 1990,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2014-02-01"
+    },
+    {
+        "id": 30,
+        "Nombre_producto": "Celular",
+        "Costos": 1990,
+        "Ciudad": "Quito",
+        "Fecha": "2015-10-01"
+    },
+    {
+        "id": 31,
+        "Nombre_producto": "Celular",
+        "Costos": 1990,
+        "Ciudad": "Quito",
+        "Fecha": "2015-02-01"
+    },
+    {
+        "id": 32,
+        "Nombre_producto": "Celular",
+        "Costos": 1990,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2014-01-01"
+    },
+    {
+        "id": 33,
+        "Nombre_producto": "Celular",
+        "Costos": 1990,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2014-12-01"
+    },
+    {
+        "id": 34,
+        "Nombre_producto": "Celular",
+        "Costos": 1990,
+        "Ciudad": "Quito",
+        "Fecha": "2012-04-01"
+    },
+    {
+        "id": 35,
+        "Nombre_producto": "Celular",
+        "Costos": 1990,
+        "Ciudad": "Quito",
+        "Fecha": "2012-04-01"
+    },
+    {
+        "id": 36,
+        "Nombre_producto": "Celular",
+        "Costos": 1990,
+        "Ciudad": "Quito",
+        "Fecha": "2012-02-01"
+    },
+    {
+        "id": 37,
+        "Nombre_producto": "Celular",
+        "Costos": 1990,
+        "Ciudad": "Quito",
+        "Fecha": "2012-03-01"
+    },
+    {
+        "id": 38,
+        "Nombre_producto": "Computadora",
+        "Costos": 4993,
+        "Ciudad": "Quito",
+        "Fecha": "2010-04-01"
+    },
+    {
+        "id": 39,
+        "Nombre_producto": "Computadora",
+        "Costos": 4993,
+        "Ciudad": "Quito",
+        "Fecha": "2010-08-01"
+    },
+    {
+        "id": 40,
+        "Nombre_producto": "Computadora",
+        "Costos": 4993,
+        "Ciudad": "Guayaquil",
+        "Fecha": "2010-04-01"
+    }
+]
