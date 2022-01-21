@@ -1,7 +1,7 @@
 //PNG
 function descargarPNG() {
 
-    var node = document.getElementById('tabledata'); /*LLAMADA ALA TABLA POR ID */
+    var node = document.getElementById('tabledata');
 
     domtoimage.toPng(node)
         .then(function(dataUrl) {
@@ -29,7 +29,7 @@ function downloadURI(uri, name) {
 // PDF
 function descargarPDF() {
 
-    html2canvas($("#tabledata")[0], { /*LLAMADA ALA TABLA POR ID */
+    html2canvas($("#tabledata")[0], {
         onrendered: function(canvas) {
             var data = canvas.toDataURL();
             var docDefinition = {
@@ -46,7 +46,7 @@ function descargarPDF() {
 //EXCEL
 function descargarEXCEL() {
 
-    // Variable to store the final csv data
+
     var csv_data = [];
 
     // Get each row data
@@ -73,9 +73,7 @@ function descargarEXCEL() {
 
     downloadCSVFile(csv_data);
 
-    /* We will use this function later to download
-    the data in a csv file downloadCSVFile(csv_data);
-    */
+
 }
 
 function downloadCSVFile(csv_data) {
