@@ -33,6 +33,10 @@ app.get('/vista_report', (req, res) => {
     res.render('vista_report');
 });
 
+app.get('/administrador', (req, res) => {
+    res.render('administrador');
+});
+
 app.listen(process.env.PORT, () => {
     console.log('Escuchando en el puerto: ', process.env.PORT);
 });
