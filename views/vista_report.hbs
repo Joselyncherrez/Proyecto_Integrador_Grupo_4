@@ -110,7 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <p class="w3ls-p">REPORTES DE LA CONCESIONARIA LATINOAMERICANA: </p>
           <!--Inicio tabla-->
             <div class="container my-5 text-center">
-                <button type="button" class="btn btn-outline-warning">Obtener</button>
+                <button type="button" class="btn btn-outline-warning" onclick="traer()">Obtener</button>
                     
                     <div class="mt-5">
                         <table class="table">
@@ -128,10 +128,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </tbody>
                         </table>
                     </div>
-                
+                     <!--BOTONES PARA CONVERTIR-->
+                <div class="btn-group" role="group" aria-label="Basic example">
+                      <button type="button" class="btn btn-danger" id="btnPDF" >
+                        <i class="mdi mdi-file-pdf btn-icon-prepend" onclick="descargarPNG()"></i>PDF</button>
+                        <button type="button" class="btn btn-info" id="btnPNG" >
+                        <i class="mdi mdi-file-image btn-icon-prepend"></i>PNG</button>
+                      <button type="button" class="btn btn-success" id="btnExcel">
+                        <i class="mdi mdi-file-excel btn-icon-prepend"></i>Excel</button>
+                <!--FIN BOTONES PARA CONVERTIR-->       
             </div>
             <!--Fin tabla-->
         </div>
+        
     </div>
 
 <!-- Reportes-->
@@ -188,6 +197,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="js/SmoothScroll.min.js"></script>
     <script type="text/javascript" src="js/move-top.js"></script>
     <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript" src="js/convertir.js"></script>
+
     <!-- here stars scrolling script -->
     <script type="text/javascript">
         $(document).ready(function() {
@@ -205,12 +216,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
 
         });
+        
     </script>
     <!-- //here ends scrolling script -->
     <!-- //here ends scrolling icon -->
 
     <!-- scrolling script -->
-    <script type="text/javascript">
+    /*<script type="text/javascript">
         jQuery(document).ready(function($) {
             $(".scroll").click(function(event) {
                 event.preventDefault();
@@ -288,7 +300,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 `
             }*/
         }
+        
     </script>
+
 </body>
 
 </html>
