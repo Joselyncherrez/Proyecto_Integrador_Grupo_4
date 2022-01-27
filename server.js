@@ -43,6 +43,7 @@ app.listen(process.env.PORT, () => {
     console.log('Escuchando en el puerto: ', process.env.PORT);
 });
 
+
 //Conexion a potsgres
 const client = new Client({
     user: 'postgres',
