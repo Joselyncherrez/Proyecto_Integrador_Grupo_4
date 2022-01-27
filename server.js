@@ -4,7 +4,7 @@ require('./config/config');
 const express = require('express');
 const hbs = require('hbs');
 //libreria pg
-const { Client } = require('pg');
+//const { Client } = require('pg');
 
 //Crear el objeto app
 const app = express();
@@ -39,13 +39,17 @@ app.get('/administrador', (req, res) => {
     res.render('administrador');
 });
 
+app.get('/registrarse', (req, res) => {
+    res.render('registrarse');
+});
+
 app.listen(process.env.PORT, () => {
     console.log('Escuchando en el puerto: ', process.env.PORT);
 });
 
 
 //Conexion a potsgres
-const client = new Client({
+/*const client = new Client({
     user: 'postgres',
     host: 'localhost',
     database: 'Relacional_Autos',
@@ -62,4 +66,4 @@ client.query('select * from carro', (err, res) => {
         console.log(err.message);
     }
     client.end;
-});
+});*/

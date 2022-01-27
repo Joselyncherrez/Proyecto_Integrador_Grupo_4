@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="es">
 
 <head>
-    <title>Concesionaria Latinoamericana | Cliente</title>
+    <title>Concesionaria Latinoamericana | Iniciar Sesión</title>
     <!-- custom-theme -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -84,11 +84,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <li><a href="/about">Conócenos</a></li>
 
                                         <li class="dropdown active">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Iniciar Sesión <span class="caret"></span></a>
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button " aria-haspopup="true" aria-expanded="false">Iniciar Sesión <span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="/login">Login</a></li>
                                                 <li><a href="/registrarse">Registrarse</a></li>
-
                                             </ul>
                                         </li>
                                         <li><a href="/contact">Contáctenos</a></li>
@@ -104,55 +103,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!-- //banner -->
-    <!-- Reportes-->
-    <div class="typo">
+    <!-- login -->
+    <div class="w3_wthree_agileits_icons main-grid-border">
         <div class="container">
-            <h3 class="w3l-titles">MODO ADMINISTRADOR</h3>
-            <table class='table table-bordered'>
-            <tr>
-            <th> Id de carro  </th>
-            <th> Tipo de carro  </th>
-            <th> Modelo </th>
-            <th> Marca </th>
-            <th> Precio </th>
-            <th> Caja de cambios </th>
-            <th> Mes de matriculacion </th>
-            <th> Año de matriculacion </th>
-            </tr>
+            <h2 class="w3l-titles">Registrese</h2>
+            <p class="w3ls-p"></p>
+            <!-- Content -->
+            <div class="container">
+                <div class="px-4 py-5 my-5 text-center">
+
+                    <h1 class="display-5 fw-bold" style="color: rgb(72, 129, 122);"> </h1>
+                    <div class="display-5 fw-bold">
+                        <form>
+                            <div class="mb-3">
+                                <p> <label for="inputEmail" class="form-label - center">Usuario</label>
+                                    <input type="email" class="form-control text-light" id="inputEmail" aria-describedby="emailHelp" style="background-color: transparent;">
+                                </p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputPassword" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control text-light" id="inputPassword" style="background-color:transparent;">
+                            </div>
+                            <p id="times"></p>
+                        </form>
+                        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                            <a role="button" class="btn btbtn btn-outline-warning" onclick="logearse()" >Registrar</a>
+                        </div>
+                    </div>
+                    <b></b>
+                </div>
             </div>
-            </table>
-            <p class="w3ls-p">Usted puede Insertar, Borrar, y Actualizar los registros de la base de datos</p>
-            <br>
-               <div class="formulario">
-                    <div class="row g-3">
-                        <div class="col">
-                            <button type="button" class="btn btn-outline-warning">Insertar</button>
-<br>
-                            <input type="text" placeholder="Inserte un registro"class="form-control" aria-label="First name"  name="inserte_regitro" required>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row g-3">
-                        <div class="col">
-                            <button type="button" class="btn btn-outline-success" >Actualizar</button>
-
-                            <input type="text" placeholder="Actualice un registro"class="form-control" aria-label="First name" name="actualice_registro"  required>
-                        </div>
-                        <br>
-                        <div class="col">
-                            <button type="button" class="btn btn-outline-warning">Eliminar</button>
-
-                            <input type="text" placeholder="Elimine un registro"class="form-control" aria-label="First name" name="elimine_registro"  required>
-                        </div>
-            
-                        <br>
-                    </div>
         </div>
-    </div>
-
-<!-- Reportes-->
-    <!-- footer -->
- <div class="footer">
+        <!-- footer -->
+        <div class="footer">
             <div class="container">
                 <div class="agileits_Grupo4_footer_grids">
                     <div class="col-md-4 agileits_Grupo4_footer_grid">
@@ -190,53 +173,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <p>© 2022 CONCESIONARIA. All rights reserved | Design by <a href="http://Grupo4.com/">Grupo4</a></p>
             </div>
         </div>
-    <!-- //footer -->
-    <!-- bootstrap-modal-pop-up -->
-    
-    <!-- //bootstrap-modal-pop-up -->
-    <!-- js -->
-    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-    <!-- for bootstrap working -->
-    <script src="js/bootstrap.js"></script>
-    <!-- //for bootstrap working -->
-    <!-- //js -->
-    <!-- //here starts scrolling icon -->
-    <script src="js/SmoothScroll.min.js"></script>
-    <script type="text/javascript" src="js/move-top.js"></script>
-    <script type="text/javascript" src="js/easing.js"></script>
-    <!-- here stars scrolling script -->
-    <script type="text/javascript">
-        $(document).ready(function() {
-            /*
-            	var defaults = {
-            	containerID: 'toTop', // fading element id
-            	containerHoverID: 'toTopHover', // fading element hover id
-            	scrollSpeed: 1200,
-            	easingType: 'linear' 
-            	};
-            */
+        <!-- //footer -->
+        <!-- bootstrap-modal-pop-up -->
 
-            $().UItoTop({
-                easingType: 'easeOutQuart'
+        <!-- //bootstrap-modal-pop-up -->
+        <!-- js -->
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <!-- for bootstrap working -->
+        <script src="js/bootstrap.js"></script>
+        <!-- //for bootstrap working -->
+        <!-- //js -->
+        <!-- //here starts scrolling icon -->
+        <script src="js/SmoothScroll.min.js"></script>
+        <script type="text/javascript" src="js/move-top.js"></script>
+        <script type="text/javascript" src="js/easing.js"></script>
+        <script type="text/javascript" src="js/login.js"></script>
+        <!-- here stars scrolling script -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                /*
+                	var defaults = {
+                	containerID: 'toTop', // fading element id
+                	containerHoverID: 'toTopHover', // fading element hover id
+                	scrollSpeed: 1200,
+                	easingType: 'linear' 
+                	};
+                */
+
+                $().UItoTop({
+                    easingType: 'easeOutQuart'
+                });
+
             });
+        </script>
+        <!-- //here ends scrolling script -->
+        <!-- //here ends scrolling icon -->
 
-        });
-    </script>
-    <!-- //here ends scrolling script -->
-    <!-- //here ends scrolling icon -->
-
-    <!-- scrolling script -->
-    <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            $(".scroll").click(function(event) {
-                event.preventDefault();
-                $('html,body').animate({
-                    scrollTop: $(this.hash).offset().top
-                }, 1000);
+        <!-- scrolling script -->
+        <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $(".scroll").click(function(event) {
+                    event.preventDefault();
+                    $('html,body').animate({
+                        scrollTop: $(this.hash).offset().top
+                    }, 1000);
+                });
             });
-        });
-    </script>
-    <!-- //scrolling script -->
+        </script>
+        <!-- //scrolling script -->
 </body>
 
 </html>

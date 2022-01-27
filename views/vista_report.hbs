@@ -87,6 +87,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Iniciar Sesión <span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="/login">Login</a></li>
+                                                <li><a href="/registrarse">Registrarse</a></li>
 
                                             </ul>
                                         </li>
@@ -112,15 +113,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="container my-5 text-center">
                 <button type="button" class="btn btn-outline-warning" onclick="traer()">Obtener</button>
                     
-                    <div class="mt-5">
+                    <div class="mt-5" id="tabla_principal">
                         <table class="table">
                             <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Nombre_producto</th>
-                                    <th scope="col">Costos</th>
-                                    <th scope="col">Ciudad</th>
-                                    <th scope="col">Fecha</th>
+                               <tr>
+                                    <th> Id de carro  </th>
+                                    <th> Tipo de carro  </th>
+                                    <th> Modelo </th>
+                                    <th> Marca </th>
+                                    <th> Precio </th>
+                                    <th> Caja de cambios </th>
+                                    <th> Mes de matriculacion </th>
+                                    <th> Año de matriculacion </th>
                                 </tr>
                             </thead>
                             <tbody id="contenido">
@@ -131,7 +135,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                      <!--BOTONES PARA CONVERTIR-->
                 <div class="btn-group" role="group" aria-label="Basic example">
                       <button type="button" class="btn btn-danger" id="btnPDF" >
-                        <i class="mdi mdi-file-pdf btn-icon-prepend" onclick="descargarPNG()"></i>PDF</button>
+                        <i class="mdi mdi-file-pdf btn-icon-prepend" onclick="func_pdf()"></i>PDF</button>
                         <button type="button" class="btn btn-info" id="btnPNG" >
                         <i class="mdi mdi-file-image btn-icon-prepend"></i>PNG</button>
                       <button type="button" class="btn btn-success" id="btnExcel">
@@ -233,75 +237,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
     <!-- //scrolling script -->
-
-    <!-- //json datos script -->
-    <script>
-        const bSubmit = document.querySelector('#bSubmit');
-        traer()
-        bSubmit.addEventListener('click', () => {
-            traer();
-        });
-        function traer() {
-            fetch('tabla.json', {method: 'GET'})
-                .then(res => res.json())
-                .then(data => {
-                    const contenido = document.querySelector('#contenido');
-                    // console.log(datos)
-                    tabla(datos)
-                })
-        }
-
-        function tabla(datos) {
-            // console.log(datos)
-            contenido.innerHTML = ''
-            for (let valor of datos) {
-                // console.log(valor.nombre)
-                contenido.innerHTML += `
-                
-                <tr>
-                    <th scope="row">${ valor.id }</th>
-                    <td>${ valor.Nombre_producto }</td>
-                    <td>${ valor.Costos }</td>
-                    <td>${ valor.Ciudad }</td>
-                    <td>${ valor.Fecha }</td>
-                </tr>
-                
-                `
-            }
-
-
-
-        /*var contenido = document.querySelector('#contenido')
-
-        function traer() {
-            fetch('tabla.json')
-                .then(res => res.json())
-                .then(datos => {
-                    // console.log(datos)
-                    tabla(datos)
-                })
-        }
-
-        function tabla(datos) {
-            // console.log(datos)
-            contenido.innerHTML = ''
-            for (let valor of datos) {
-                // console.log(valor.nombre)
-                contenido.innerHTML += `
-                
-                <tr>
-                    <th scope="row">${ valor.id }</th>
-                    <td>${ valor.Nombre_producto }</td>
-                    <td>${ valor.Costos }</td>
-                    <td>${ valor.Ciudad }</td>
-                    <td>${ valor.Fecha }</td>
-                </tr>
-                
-                `
-            }*/
-        }
         
-    </script>
+
+    <script>
+    /SCRIPT PARA COONVERTIR TABLA A PDF/
+        
+    function func_pdf() {
+            var sTable = document.getElementById('tabla_principal').innerHTML;
+
+            var style = "<style>";
+            style = style + "table {width: 100%;font: 17px Calibri;}";
+            style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+            style = style + "padding: 2px 3px;text-align: center;}";
+            style = style + "</style>";
+
+            // CREATE A WINDOW OBJECT.
+            var win = window.open('', '', 'height=700,width=700');
+
+            win.document.write('<html><head>');
+            win.document.write('<title>Profile</title>');   // <title> FOR PDF HEADER.
+            win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
+            win.document.write('</head>');
+            win.document.write('<body>');
+            win.document.write(sTable);         // THE TABLE CONTENTS INSIDE THE BODY TAG.
+            win.document.write('</body></html>');
+
+            win.document.close(); 	// CLOSE THE CURRENT WINDOW.
+
+            win.print();    // PRINT THE CONTENTS.
+        }
+
+
+    /FIN SCRIPT PARA COONVERTIR TABLA A PDF/
+</script>
 
 </body>
 
