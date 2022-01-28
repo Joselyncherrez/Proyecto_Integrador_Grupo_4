@@ -119,23 +119,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
 
             <h2 class="w3l-titles">Bienvenidos</h2>
-            <div class="w3l-about-grids">
-                <div class="col-md-6 w3ls-about-left">
-                    <div class="agileits-icon-grid">
-
-                        <div class="icon-right">
+            <div id= "mensaje" class="w3l-about-grids " >
+                Si desea consultar un automóvil de la Concesionaria Latinoamericana, Por favor
+                        <div  class="loginIndex">
+                            <a href="/login">Inicie Sesión.</a>
                         </div>
-                        <div class="clearfix"> </div>
-                    </div>
-                    <div class="agileits-icon-grid">
-                        <div class="icon-right">
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
-                    <div class="agileits-icon-grid">
-                        <div class="clearfix"> </div>
-                    </div>
-                </div>
+                 
+             </div>
+             <img src="images\Carros-de-Portada-Multipartes.png" alt="">
                 <div class="col-md-6 w3ls-about-right">
                 </div>
                 <div class="clearfix"> </div>
@@ -211,23 +202,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="js/SmoothScroll.min.js"></script>
     <script type="text/javascript" src="js/move-top.js"></script>
     <script type="text/javascript" src="js/easing.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script type="text/javascript" src="js/highcharts.js"></script>
+    <script type="text/javascript" src="js/api.js"></script>
     <!-- here stars scrolling script -->
     <script type="text/javascript">
         $(document).ready(function() {
-            /*
-            	var defaults = {
-            	containerID: 'toTop', // fading element id
-            	containerHoverID: 'toTopHover', // fading element hover id
-            	scrollSpeed: 1200,
-            	easingType: 'linear' 
-            	};
-            */
-
+  
             $().UItoTop({
                 easingType: 'easeOutQuart'
             });
 
+             //Metodos de api.js
+            obtenerMarcas();
+            obtenerModelos();
+            obtenerTiposVehiculos();
+            obtenerTiposCombustibles();
+            obtenerPrecios();
+            obtenerTiposOfertas();
+
         });
+        
     </script>
     <!-- //here ends scrolling script -->
     <!-- //here ends scrolling icon -->

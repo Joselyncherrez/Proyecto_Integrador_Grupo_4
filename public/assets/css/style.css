@@ -3147,5 +3147,14 @@ h2.typoh2 {
     }
 }
 
+#mensaje {
+    text-align: center;
+    font-size: 20px;
+}
+
+a:hover {
+    color: #f8cc3b;
+}
+
 
 /*-- //responsive design --*/

@@ -198,10 +198,3 @@ app.get('/api/tipo/ofertas', function(req, res) {
     });
 
 });
-
-
-var sendError = function(err) {
-    console.log("Error al obtener la data");
-    console.log(err);
-    return res.sendStatus(500);
-};

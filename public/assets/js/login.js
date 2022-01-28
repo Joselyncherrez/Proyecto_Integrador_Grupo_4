@@ -10,7 +10,7 @@ function logearse() {
             document.getElementById('times').innerHTML = "No hay más intentos , Recarge la pagina para volver a intentarlo";
 
         } else {
-            document.getElementById('times').innerHTML = "Intentos Restantes: " + x;
+            //document.getElementById('times').innerHTML = "Intentos Restantes: " + x;
             x = x - 1;
         }
 
@@ -24,7 +24,7 @@ function logearse() {
             document.getElementById('times').innerHTML = "No hay más intentos , Recarge la pagina para volver a intentarlo";
 
         } else {
-            document.getElementById('times').innerHTML = "Intentos Restantes: " + x;
+            //document.getElementById('times').innerHTML = "Intentos Restantes: " + x;
             x = x - 1;
         }
 
