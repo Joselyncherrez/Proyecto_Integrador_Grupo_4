@@ -150,4 +150,3 @@ function filtrarCarros() {
             console.log(err);
         })
 }
-/////////////////////

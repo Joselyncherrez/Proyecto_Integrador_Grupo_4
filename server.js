@@ -53,13 +53,13 @@ const client = new Client({
     user: 'postgres',
     host: 'localhost',
     database: 'Relacional_Autos',
-    password: 'Admin*1234',
+    password: '12345',
     port: 5432,
 });
 
 client.connect();
 
-//obtener datos
+
 app.get('/api/carros', function(req, res) {
 
     console.info("query params:")
@@ -198,3 +198,10 @@ app.get('/api/tipo/ofertas', function(req, res) {
     });
 
 });
+
+
+var sendError = function(err) {
+    console.log("Error al obtener la data");
+    console.log(err);
+    return res.sendStatus(500);
+};
