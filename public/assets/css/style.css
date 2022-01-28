@@ -3152,8 +3152,9 @@ h2.typoh2 {
     font-size: 20px;
 }
 
-a:hover {
-    color: #f8cc3b;
+a,
+#ingresar:hover {
+    color: #ffc400;
 }
 
 
