@@ -1,6 +1,16 @@
-function obtenerMarcas() {
+const server = "localhost:8000";
 
-    $.get("/api/marcas", function(data) {
+function obtenerMarcas() {
+    const options = {
+        method: 'GET',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }
+
+    return fetch(`${server}/api/marcas`, options)
+        .then(response => response.json())
+        .then(data => {
             data.forEach(element => {
                 $('#marcas').append($('<option>', {
                     value: element.marca,
@@ -8,9 +18,8 @@ function obtenerMarcas() {
                 }));
             });
         })
-        .fail(function(err) {
-            console.log(err);
-        })
+        .catch(error => console.error(error));
+
 }
 
 function obtenerModelos() {
