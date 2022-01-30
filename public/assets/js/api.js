@@ -1,6 +1,5 @@
-const server = "localhost:8000";
-
-function obtenerMarcas() {
+function obtenerMarcas(userData = {}) {
+    const server = "http://localhost:8000";
     const options = {
         method: 'GET',
         headers: new Headers({
@@ -8,23 +7,43 @@ function obtenerMarcas() {
         })
     }
 
-    return fetch(`${server}/api/marcas`, options)
-        .then(response => response.json())
-        .then(data => {
+
+    /*const options = {
+        method: 'POST',
+        body: userData,
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }
+*/
+
+    $.ajax(`${server}/api/marcas`, options, function(data) {
             data.forEach(element => {
-                $('#marcas').append($('<option>', {
-                    value: element.marca,
-                    text: element.marca
+                $('#modelos').append($('<option>', {
+                    value: element.modelo,
+                    text: element.modelo
                 }));
             });
         })
-        .catch(error => console.error(error));
+        .fail(function(err) {
+            console.log(err);
+        })
 
 }
 
-function obtenerModelos() {
 
-    $.get("/api/modelos", function(data) {
+//document.getElementById('inputPassword').value == 'ciclo59' && document.getElementById('inputEmail').value == 'usuario1'
+
+function obtenerModelos() {
+    const server = "http://localhost:8000";
+    const options = {
+        method: 'GET',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }
+
+    $.ajax(`${server}/api/modelos`, options, function(data) {
             data.forEach(element => {
                 $('#modelos').append($('<option>', {
                     value: element.modelo,
@@ -38,12 +57,19 @@ function obtenerModelos() {
 }
 
 function obtenerTiposVehiculos() {
+    const server = "http://localhost:8000";
+    const options = {
+        method: 'GET',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }
 
-    $.get("/api/tipo/vehiculos", function(data) {
+    $.ajax(`${server}/api/tipo/vehiculos`, options, function(data) {
             data.forEach(element => {
                 $('#tiposVehiculos').append($('<option>', {
-                    value: element.tipo_vehiculo,
-                    text: element.tipo_vehiculo
+                    value: element.modelo,
+                    text: element.modelo
                 }));
             });
         })
@@ -53,12 +79,19 @@ function obtenerTiposVehiculos() {
 }
 
 function obtenerTiposCombustibles() {
+    const server = "http://localhost:8000";
+    const options = {
+        method: 'GET',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }
 
-    $.get("/api/tipo/combustibles", function(data) {
+    $.ajax(`${server}/api/tipo/combustibles`, options, function(data) {
             data.forEach(element => {
                 $('#tiposCombustibles').append($('<option>', {
-                    value: element.tipo_combustible,
-                    text: element.tipo_combustible
+                    value: element.modelo,
+                    text: element.modelo
                 }));
             });
         })
@@ -68,27 +101,42 @@ function obtenerTiposCombustibles() {
 }
 
 function obtenerPrecios() {
+    const server = "http://localhost:8000";
+    const options = {
+        method: 'GET',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }
 
-    $.get("/api/precios", function(data) {
+    $.ajax(`${server}/api/precios`, options, function(data) {
             data.forEach(element => {
                 $('#precios').append($('<option>', {
-                    value: element.precio,
-                    text: element.precio
+                    value: element.modelo,
+                    text: element.modelo
                 }));
             });
         })
         .fail(function(err) {
             console.log(err);
         })
+
 }
 
 function obtenerTiposOfertas() {
+    const server = "http://localhost:8000";
+    const options = {
+        method: 'GET',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }
 
-    $.get("/api/tipo/ofertas", function(data) {
+    $.ajax(`${server}/api/tipo/ofertas`, options, function(data) {
             data.forEach(element => {
                 $('#tiposOfertas').append($('<option>', {
-                    value: element.tipo_oferta,
-                    text: element.tipo_oferta
+                    value: element.modelo,
+                    text: element.modelo
                 }));
             });
         })
@@ -102,6 +150,13 @@ function filtrarCarros() {
     //Oculta la gráfica
     $("#container").css({ display: "none" });
 
+    const server = "http://localhost:8000";
+    const options = {
+        method: 'GET',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }
     $.get("/api/carros", {
             marca: $("#marcas").val(),
             modelo: $("#modelos").val(),

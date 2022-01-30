@@ -3,21 +3,35 @@ require('./config/config');
 //Exportamos librerias
 const express = require('express');
 const hbs = require('hbs');
+const cors = require('cors');
+
 //libreria pg
 const { Client } = require('pg');
+const bodyParser = require('body-parser');
 
 //Crear el objeto app
 const app = express();
+
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(cors());
+
 //Conexion a potsgres
 const client = new Client({
     user: 'postgres',
     host: 'localhost',
     database: 'Relacional_Autos',
-    password: 'Admin*1234',
+    password: '12345',
     port: 5432,
 });
 
 client.connect();
+
+app.post('/api/login', function(req, res) {
+
+    const userData = req.body;
+    console.log(userData);
+});
 
 
 app.get('/api/carros', function(req, res) {
