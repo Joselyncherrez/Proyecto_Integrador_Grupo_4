@@ -27,39 +27,22 @@ function loginUser(userData = {}) {
 
 }
 
-function logearse() {
-    const data = {
-        user: document.getElementById('inputEmail').value,
-        password: document.getElementById('inputPassword').value
+function registrar(userData = {}) {
+
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(userData),
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
     }
-    loginUser(data);
-    /*
-    if (document.getElementById('inputPassword').value == 'ciclo59' && document.getElementById('inputEmail').value == 'usuario1') {
-        location.replace("/vista_report")
 
-    } else {
+    return fetch(`${server}/api/registrar`, options)
+        .then(response => response.json())
+        .then(data => {
+            alert('Usuario Registrado')
 
-        if (x == 0) {
-            document.getElementById('times').innerHTML = "No hay más intentos , Recarge la pagina para volver a intentarlo";
+        })
+        .catch(error => console.error(error));
 
-        } else {
-            //document.getElementById('times').innerHTML = "Intentos Restantes: " + x;
-            x = x - 1;
-        }
-
-    }
-    if (document.getElementById('inputPassword').value == 'ciclo59' && document.getElementById('inputEmail').value == 'grupo4') {
-        location.replace("/administrador")
-
-    } else {
-
-        if (x == 0) {
-            document.getElementById('times').innerHTML = "No hay más intentos , Recarge la pagina para volver a intentarlo";
-
-        } else {
-            //document.getElementById('times').innerHTML = "Intentos Restantes: " + x;
-            x = x - 1;
-        }
-
-    }*/
 }

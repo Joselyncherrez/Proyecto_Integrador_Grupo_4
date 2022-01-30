@@ -157,7 +157,8 @@ function filtrarCarros() {
             'Content-Type': 'application/json'
         })
     }
-    $.get("/api/carros", {
+
+    $.ajax(`${server}/api/carros`, options, function(data), {
             marca: $("#marcas").val(),
             modelo: $("#modelos").val(),
             tipoVehiculo: $("#tiposVehiculos").val(),

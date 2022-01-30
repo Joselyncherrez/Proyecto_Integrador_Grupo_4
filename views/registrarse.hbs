@@ -225,4 +225,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- //scrolling script -->
 </body>
 
+<script type="text/javascript">
+        $(document).ready(function() {
+ 
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+             //Metodos de api.js
+            obtenerMarcas();
+            obtenerModelos();
+            obtenerTiposVehiculos();
+            obtenerTiposCombustibles();
+            obtenerPrecios();
+            obtenerTiposOfertas();
+
+        });
+        
+    </script>
+
 </html>

@@ -52,6 +52,31 @@ app.post('/api/login', function(req, res) {
     });
 });
 
+app.post('/api/registrar', function(req, res) {
+
+    const userData = req.body;
+    //consulta..
+    let query = `insert into usuarios values ('${userData.user}',${userData.password},'USER_ROLE')`;
+
+
+    client.query(query, (err, result) => {
+        if (err) {
+            return sendError(err);
+        }
+        if (result.rowCount == 0) {
+            return res.sendStatus(500);
+        }
+        return res.json({
+            code: 200,
+            data: result.rows[0]
+        })
+
+
+
+    });
+});
+
+
 
 
 var sendError = function(err) {
