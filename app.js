@@ -77,7 +77,7 @@ app.get('/api/carros', function(req, res) {
 
 app.get('/api/modelos', function(req, res) {
 
-    var query = 'select distinct(modelo) from carro ' +
+    var query = 'select distinct modelo, marca from carro ' +
         ' where modelo is not null order by modelo asc';
 
     console.log("Obteniendo data...");

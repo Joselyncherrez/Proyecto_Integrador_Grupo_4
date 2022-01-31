@@ -6,32 +6,22 @@ function obtenerMarcas(userData = {}) {
             'Content-Type': 'application/json'
         })
     }
-
-
-    /*const options = {
-        method: 'POST',
-        body: userData,
-        headers: new Headers({
-            'Content-Type': 'application/json'
-        })
-    }
-*/
-
     $.ajax(`${server}/api/marcas`, options, function(data) {
+
+
+        })
+        .done((data) => {
             data.forEach(element => {
-                $('#modelos').append($('<option>', {
-                    value: element.modelo,
-                    text: element.modelo
-                }));
+
+                $('#marcas').append(`<option value="${element.marca}">${element.marca}</option>`);
             });
         })
         .fail(function(err) {
+
             console.log(err);
         })
 
 }
-
-
 //document.getElementById('inputPassword').value == 'ciclo59' && document.getElementById('inputEmail').value == 'usuario1'
 
 function obtenerModelos() {
@@ -43,17 +33,31 @@ function obtenerModelos() {
         })
     }
 
-    $.ajax(`${server}/api/modelos`, options, function(data) {
-            data.forEach(element => {
-                $('#modelos').append($('<option>', {
-                    value: element.modelo,
-                    text: element.modelo
-                }));
-            });
-        })
-        .fail(function(err) {
-            console.log(err);
-        })
+    $("#marcas").on('change', function(e) {
+        let marca = this.value;
+
+        $.ajax(`${server}/api/modelos`, options, function(data) {
+
+
+            })
+            .done((data) => {
+                $('#modelos').find('option').remove()
+                $('#modelos').append('<option value="">Seleccionar modelo</option>')
+                const filterData = data.filter((element) => {
+                    return element.marca == marca;
+                })
+
+                filterData.forEach(element => {
+
+                    $('#modelos').append(`<option value="${element.modelo}">${element.modelo}</option>`);
+                });
+            })
+            .fail(function(err) {
+                console.log(err);
+            })
+    })
+
+
 }
 
 function obtenerTiposVehiculos() {
@@ -66,11 +70,12 @@ function obtenerTiposVehiculos() {
     }
 
     $.ajax(`${server}/api/tipo/vehiculos`, options, function(data) {
+
+        })
+        .done((data) => {
             data.forEach(element => {
-                $('#tiposVehiculos').append($('<option>', {
-                    value: element.modelo,
-                    text: element.modelo
-                }));
+
+                $('#tiposVehiculos').append(`<option value="${element.tipo_vehiculo}">${element.tipo_vehiculo}</option>`);
             });
         })
         .fail(function(err) {
@@ -88,56 +93,12 @@ function obtenerTiposCombustibles() {
     }
 
     $.ajax(`${server}/api/tipo/combustibles`, options, function(data) {
+
+        })
+        .done((data) => {
             data.forEach(element => {
-                $('#tiposCombustibles').append($('<option>', {
-                    value: element.modelo,
-                    text: element.modelo
-                }));
-            });
-        })
-        .fail(function(err) {
-            console.log(err);
-        })
-}
 
-function obtenerPrecios() {
-    const server = "http://localhost:8000";
-    const options = {
-        method: 'GET',
-        headers: new Headers({
-            'Content-Type': 'application/json'
-        })
-    }
-
-    $.ajax(`${server}/api/precios`, options, function(data) {
-            data.forEach(element => {
-                $('#precios').append($('<option>', {
-                    value: element.modelo,
-                    text: element.modelo
-                }));
-            });
-        })
-        .fail(function(err) {
-            console.log(err);
-        })
-
-}
-
-function obtenerTiposOfertas() {
-    const server = "http://localhost:8000";
-    const options = {
-        method: 'GET',
-        headers: new Headers({
-            'Content-Type': 'application/json'
-        })
-    }
-
-    $.ajax(`${server}/api/tipo/ofertas`, options, function(data) {
-            data.forEach(element => {
-                $('#tiposOfertas').append($('<option>', {
-                    value: element.modelo,
-                    text: element.modelo
-                }));
+                $('#tiposCombustibles').append(`<option value="${element.tipo_combustible}">${element.tipo_combustible}</option>`);
             });
         })
         .fail(function(err) {
@@ -157,16 +118,20 @@ function filtrarCarros() {
             'Content-Type': 'application/json'
         })
     }
+    const values = {
+        marca: $("#marcas").val(),
+        modelo: $("#modelos").val(),
+        tipoVehiculo: $("#tiposVehiculos").val(),
+        tipoCombustible: $("#tiposCombustibles").val(),
 
-    $.ajax(`${server}/api/carros`, options, function(data), {
-            marca: $("#marcas").val(),
-            modelo: $("#modelos").val(),
-            tipoVehiculo: $("#tiposVehiculos").val(),
-            tipoCombustible: $("#tiposCombustibles").val(),
-            precio: $("#precios").val(),
-            tipoOferta: $("#tiposOfertas").val()
-        }, function(data) {
+    }
 
+    $.ajax(`${server}/api/carros?}marca=${values.marca}&modelo=${values.modelo}&tipoVehiculo=${values.tipoVehiculo}&tipoCombustible=${values.tipoCombustible}`, options, function()
+
+            {}
+
+        )
+        .done(data => {
             var map = new Map();
             //Limpio la tabla
             $('#carros tr').not(':first').remove();
@@ -209,9 +174,9 @@ function filtrarCarros() {
             //Grafica
             //Metodos de highcharts.js
             graficar(map);
-
         })
         .fail(function(err) {
+            debugger;
             console.log(err);
         })
 }

@@ -40,7 +40,11 @@ app.post('/api/login', function(req, res) {
             return sendError(err);
         }
         if (result.rowCount == 0) {
-            return res.sendStatus(500);
+            return res.json({
+                code: 500,
+                message: "Usuario no existe"
+            })
+
         }
         return res.json({
             code: 200,
@@ -56,12 +60,13 @@ app.post('/api/registrar', function(req, res) {
 
     const userData = req.body;
     //consulta..
-    let query = `insert into usuarios values ('${userData.user}',${userData.password},'USER_ROLE')`;
+    let query = ` insert into usuarios (usuario, contraseña, rol) values ('${userData.user}', '${userData.password}','USER_ROLE')`;
+
 
 
     client.query(query, (err, result) => {
         if (err) {
-            return sendError(err);
+            return res.sendStatus(500);
         }
         if (result.rowCount == 0) {
             return res.sendStatus(500);

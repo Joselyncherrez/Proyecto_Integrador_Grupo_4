@@ -1,9 +1,13 @@
 var x = 3;
 const server = "http://localhost:9000";
-const api = require('./api');
 
-function loginUser(userData = {}) {
 
+function loginUser() {
+
+    userData = {
+        user: document.getElementById('inputEmail').value,
+        password: document.getElementById('inputPassword').value
+    }
     const options = {
         method: 'POST',
         body: JSON.stringify(userData),
@@ -26,9 +30,12 @@ function loginUser(userData = {}) {
         .catch(error => console.error(error));
 
 }
-
-function registrar(userData = {}) {
-
+//document.getElementById('inputPassword').value == 'ciclo59' && document.getElementById('inputEmail').value == 'usuario1'
+function registrar() {
+    userData = {
+        user: document.getElementById('inputEmail').value,
+        password: document.getElementById('inputPassword').value
+    }
     const options = {
         method: 'POST',
         body: JSON.stringify(userData),
@@ -41,6 +48,7 @@ function registrar(userData = {}) {
         .then(response => response.json())
         .then(data => {
             alert('Usuario Registrado')
+            window.location = "http://localhost:3000/login"
 
         })
         .catch(error => console.error(error));
