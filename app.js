@@ -20,7 +20,7 @@ app.use(cors());
 const client = new Client({
     user: 'postgres',
     host: 'localhost',
-    database: 'Relacional_Autos',
+    database: 'Dimensional_Autos',
     password: '12345',
     port: 5432,
 });
@@ -39,10 +39,10 @@ app.get('/api/carros', function(req, res) {
     console.info("query params:")
     console.info(req.query);
 
-    var query = "select carro.*, revision.kilometro, revision.caja_cambios, ventas.precio from carro ";
-    query += "inner join revision on carro.id_carro = revision.id_carro ";
+    var query = " Select dim_carro.*, kilometro, caja_cambios, precio from dim_carro, fact_automoviles, dim_revision";
+    query += "where dim_carro.sk_carro = fact_automoviles.sk_carro  AND dim_revision.sk_revision = fact_automoviles.sk_revision";
     query += "inner join ventas on carro.id_carro = ventas.id_carro ";
-    query += "where 1 = 1";
+    query += "AND 1=1";
     if (req.query.tipoVehiculo != undefined && req.query.tipoVehiculo != '')
         query += " AND tipo_vehiculo = '" + req.query.tipoVehiculo + "'";
 
@@ -61,7 +61,7 @@ app.get('/api/carros', function(req, res) {
     if (req.query.tipoOferta != undefined && req.query.tipoOferta != '')
         query += " AND tipo_oferta = '" + req.query.tipoOferta + "'";
 
-    query += " ORDER BY id_carro ASC";
+    query += " order by pk_carro asc";
 
     console.log(query);
     console.log("Obteniendo data...");
@@ -77,8 +77,8 @@ app.get('/api/carros', function(req, res) {
 
 app.get('/api/modelos', function(req, res) {
 
-    var query = 'select distinct modelo, marca from carro ' +
-        ' where modelo is not null order by modelo asc';
+    var query = 'select distinct modelo_carro, marca_carro from dim_carro ' +
+        ' where modelo_carro is not null order by modelo_carro asc;';
 
     console.log("Obteniendo data...");
     client.query(query, (err, result) => {
@@ -91,11 +91,10 @@ app.get('/api/modelos', function(req, res) {
 
 });
 
-
 app.get('/api/marcas', function(req, res) {
 
-    var query = 'select distinct(marca) from carro ' +
-        'where marca is not null order by marca asc';
+    var query = 'select distinct (marca_carro) from dim_carro ' +
+        'where marca_carro is not null order by marca_carro asc;';
 
     console.log("Obteniendo data...");
     client.query(query, (err, result) => {
@@ -110,8 +109,8 @@ app.get('/api/marcas', function(req, res) {
 
 app.get('/api/tipo/vehiculos', function(req, res) {
 
-    var query = 'select distinct(tipo_vehiculo) from ' +
-        'carro where tipo_vehiculo is not null order by tipo_vehiculo asc';
+    var query = 'select distinct (tipo_vehiculo) from dim_carro ' +
+        'where tipo_vehiculo is not null order by tipo_vehiculo asc;';
 
     console.log("Obteniendo data...");
     client.query(query, (err, result) => {
@@ -123,12 +122,11 @@ app.get('/api/tipo/vehiculos', function(req, res) {
     });
 
 });
-
 
 app.get('/api/tipo/combustibles', function(req, res) {
 
-    var query = 'select distinct(tipo_combustible)' +
-        'from carro where tipo_combustible is not null order by tipo_combustible asc';
+    var query = 'select distinct (tipo_combustible) from dim_carro ' +
+        'where tipo_combustible is not null order by tipo_combustible asc;';
 
     console.log("Obteniendo data...");
     client.query(query, (err, result) => {
@@ -141,38 +139,17 @@ app.get('/api/tipo/combustibles', function(req, res) {
 
 });
 
-app.get('/api/precios', function(req, res) {
-
-    var query = 'select distinct(precio) from ventas ' +
-        'where precio is not null order by precio asc';
-
-    console.log("Obteniendo data...");
-    client.query(query, (err, result) => {
-
-        if (err) return sendError(err);
-
-        console.log("Data encontrada: " + result.rowCount);
-        return res.json(result.rows);
-    });
-
+app.post('/api/insertar_datos', function(req, res) {
+    if (err) return sendError(err);
 });
 
-app.get('/api/tipo/ofertas', function(req, res) {
-
-    var query = 'select distinct(tipo_oferta) from ventas ' +
-        'where tipo_oferta is not null order by tipo_oferta asc';
-
-    console.log("Obteniendo data...");
-    client.query(query, (err, result) => {
-
-        if (err) return sendError(err);
-
-        console.log("Data encontrada: " + result.rowCount);
-        return res.json(result.rows);
-    });
-
+app.put('/api/actualizar_datos', function(req, res) {
+    if (err) return sendError(err);
 });
 
+app.delete('/api/eliminar_datos', function(req, res) {
+    if (err) return sendError(err);
+});
 
 var sendError = function(err) {
     console.log("Error al obtener la data");
