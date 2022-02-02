@@ -27,21 +27,6 @@ function downloadURI(uri, name) {
     delete link;
 }
 // PDF
-function descargarPDF() {
-
-    html2canvas($("#tabledata")[0], {
-        onrendered: function(canvas) {
-            var data = canvas.toDataURL();
-            var docDefinition = {
-                content: [{
-                    image: data,
-                    width: 500
-                }]
-            };
-            pdfMake.createPdf(docDefinition).download("Reporte.pdf");
-        }
-    })
-}
 
 //EXCEL
 function descargarEXCEL() {

@@ -108,19 +108,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="typo">
         <div class="container">
             <h3 class="w3l-titles">MODO ADMINISTRADOR</h3>
-            <table class='table table-bordered'>
-            <tr>
-            <th> Id de carro  </th>
-            <th> Tipo de carro  </th>
-            <th> Modelo </th>
-            <th> Marca </th>
-            <th> Precio </th>
-            <th> Caja de cambios </th>
-            <th> Mes de matriculacion </th>
-            <th> Año de matriculacion </th>
-            </tr>
-            </div>
-            </table>
+            <button type="button" class="btn btn-outline-warning" onclick="mostrar_tabla()">Mostrar Tabla</button>
+             <div class="mt-5" id="tabla_fact">
+                        <table id="fact" name="fact" class="table">
+                            <thead>
+                               <tr>
+                                    <th> sk_carro  </th>
+                                    <th> sk_revicion  </th>
+                                    <th> sk_ventas  </th>
+                                    <th> sk_concesionario </th>
+                                    <th> sk_fecha </th>
+                                    <th> Kilometro </th>
+                                    <th> precio </th>
+                                    <th> potencia_ps </th>
+                                    <th> codigo_postal </th>
+                                </tr>
+                            </thead>
+                            <tbody id="contenido">
+                                <td colspan="7" class="text-center"> No se encontraron registros </td>
+                            </tbody>
+                        </table>
+                    </div>
             <p class="w3ls-p">Usted puede Insertar, Borrar, y Actualizar los registros de la base de datos</p>
             <br>
                <div class="formulario">
@@ -187,7 +195,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     </ul>
                 </div>
-                <p>© 2022 CONCESIONARIA. All rights reserved | Design by <a href="http://Grupo4.com/">Grupo4</a></p>
+                <p>©️ 2022 CONCESIONARIA. All rights reserved | Design by <a href="http://Grupo4.com/">Grupo4</a></p>
             </div>
         </div>
     <!-- //footer -->
@@ -204,6 +212,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="js/SmoothScroll.min.js"></script>
     <script type="text/javascript" src="js/move-top.js"></script>
     <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript" src="js/api.js"></script>
     <!-- here stars scrolling script -->
     <script type="text/javascript">
         $(document).ready(function() {

@@ -182,7 +182,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                      <!--BOTONES PARA CONVERTIR-->
                 <div class="btn-group" role="group" aria-label="Basic example">
                       <button type="button" class="btn btn-danger" id="btnPDF" >
-                        <i class="mdi mdi-file-pdf btn-icon-prepend" onclick="func_pdf()"></i>PDF</button>
+                        <i class="mdi mdi-file-pdf btn-icon-prepend" onclick="downloadDoc()"></i>PDF</button>
                       <button type="button" class="btn btn-success" id="btnExcel">
                         <i class="mdi mdi-file-excel btn-icon-prepend"></i>Excel</button>
                 <!--FIN BOTONES PARA CONVERTIR-->       
@@ -318,6 +318,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     /FIN SCRIPT PARA COONVERTIR TABLA A PDF/
 </script>
+<script>
+    /SCRIPT PARA COONVERTIR TABLA A PDF/
+    function downloadDoc(){
+
+  html2canvas($("#tabla_principal")[0],{   /*LLAMADA ALA TABLA POR ID */
+    onrendered:function(canvas){
+      var data=canvas.toDataURL();
+      var docDefinition={
+        content:[{
+          image:data,
+          width:500
+        }]
+      };
+      pdfMake.createPdf(docDefinition).download("Tabla.pdf");
+    }
+  })
+    }
+  /FIN SCRIPT PARA COONVERTIR TABLA A PDF/
+  </script>
 </body>
 
 </html>

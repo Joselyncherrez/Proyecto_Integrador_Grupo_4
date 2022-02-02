@@ -180,3 +180,70 @@ function filtrarCarros() {
             console.log(err);
         })
 }
+
+function mostrar_tabla() {
+    const server = "http://localhost:8000";
+    const options = {
+        method: 'GET',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }
+    userData = {
+        //añadir campos de la tabla fact
+        sk_carro: document.getElementById('inputEmail').value,
+        password: document.getElementById('inputPassword').value
+    }
+    $.ajax(`${server}/api/tabla_fact`, options, function()
+
+            {}
+
+        )
+        .done(data => {
+
+            $('#fact tr').not(':first').remove();
+            var html = '';
+            //Verifica que si haya data
+            if (data.length != 0) {
+                data.forEach(element => {
+                    html += '' +
+                        '<tr>' +
+                        '<td>' + element.id_carro + '</td>' +
+                        '<td>' + element.marca + '</td>' +
+                        '<td>' + element.modelo + '</td>' +
+                        '<td>' + element.tipo_vehiculo + '</td>' +
+                        '<td>' + element.tipo_combustible + '</td>' +
+                        '<td>' + element.kilometro + '</td>' +
+                        '<td>' + element.caja_cambios + '</td>' +
+                        '</tr>';
+                    if (map.has(element.tipo_vehiculo)) {
+                        var arreglo = map.get(element.tipo_vehiculo);
+                        arreglo.push(element.precio);
+
+                        var set = new Set(arreglo);
+                        map.set(element.tipo_vehiculo, Array.from(set));
+                    } else {
+                        var arreglo = [element.precio];
+                        map.set(element.tipo_vehiculo, arreglo);
+                    }
+
+
+                });
+            } else {
+                html += '<tr>' +
+                    '<td colspan="7" class="text-center"> No se encontraron registros </td>' +
+
+                    '</tr>';
+            }
+
+            //Se crea los registros
+            $('#carros tr').first().after(html);
+            //Grafica
+            //Metodos de highcharts.js
+            graficar(map);
+        })
+        .fail(function(err) {
+            debugger;
+            console.log(err);
+        })
+}
