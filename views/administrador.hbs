@@ -131,30 +131,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
             <p class="w3ls-p">Usted puede Insertar, Borrar, y Actualizar los registros de la base de datos</p>
             <br>
-               <div class="formulario">
-                    <div class="row g-3">
-                        <div class="col">
-                            <button type="button" class="btn btn-outline-warning">Insertar</button>
-<br>
-                            <input type="text" placeholder="Inserte un registro"class="form-control" aria-label="First name"  name="inserte_regitro" required>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row g-3">
-                        <div class="col">
-                            <button type="button" class="btn btn-outline-success" >Actualizar</button>
+            <div class="separacion">
+                <select class="form-select" id="opciones_ad" aria-label="Default select example">
+                    <option value="" id="vacio">Seleccione una opcion</option>
+                    <option value="insertar">Insertar</option>
+                    <option value="actualizar">Actualizar</option>
+                    <option value="eliminar">Eliminar</option>
+                </select>
+            </div>
+            <br>
+            <div id="contenido_administrador">
 
-                            <input type="text" placeholder="Actualice un registro"class="form-control" aria-label="First name" name="actualice_registro"  required>
-                        </div>
-                        <br>
-                        <div class="col">
-                            <button type="button" class="btn btn-outline-warning">Eliminar</button>
-
-                            <input type="text" placeholder="Elimine un registro"class="form-control" aria-label="First name" name="elimine_registro"  required>
-                        </div>
-            
-                        <br>
-                    </div>
+            </div>
+               
         </div>
     </div>
 
@@ -246,6 +235,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
     <!-- //scrolling script -->
+    <script type="text/javascript">
+    document.getElementById("opciones_ad").onchange = opciones_pos;
+    function opciones_post(){
+        if(document.getElementById("opciones_ad").value=="insertar"){
+        return document.getElementById("contenido_administrador").innerHTML = "<div class='col-2' >    <div class='p-3 bg-light'></div> </div> <div class='col-2'> <div class='p-3 bg-light'><input type='checkbox' id='aceite' name='aceite' value='aceite'> <label class='form-label'  for='vehicle1'> Cambio de insertar</label></div> </div> <div class='col-2'>   <div class='p-3 bg-light'><input  class='form-label' type='checkbox' id='frenos' name='frenos' value='frenos'>  <label  class='form-label' for='vehicle2'> Frenos</label></div> </div> <div class='col-2'>  <div class='p-3 bg-light'><input class='form-label'  type='checkbox' id='llantas' name='llantas' value='llantas'>     <label class='form-label' for='vehicle3'> Llantas</label></div> ";
+        }else if(document.getElementById("opciones_ad").value=="actualizar"){
+        return document.getElementById("contenido_administrador").innerHTML = "<div class='col-2' >    <div class='p-3 bg-light'></div> </div> <div class='col-2'> <div class='p-3 bg-light'><input type='checkbox' id='aceite' name='aceite' value='aceite'> <label class='form-label'  for='vehicle1'> Cambio de actualizar</label></div> </div> <div class='col-2'>   <div class='p-3 bg-light'><input  class='form-label' type='checkbox' id='frenos' name='frenos' value='frenos'>  <label  class='form-label' for='vehicle2'> Frenos</label></div> </div> <div class='col-2'>  <div class='p-3 bg-light'><input class='form-label'  type='checkbox' id='llantas' name='llantas' value='llantas'>     <label class='form-label' for='vehicle3'> Llantas</label></div> ";
+        }else if(document.getElementById("opciones_ad").value=="eliminar"){
+        return document.getElementById("contenido_administrador").innerHTML = "<div class='col-2' >    <div class='p-3 bg-light'></div> </div> <div class='col-2'> <div class='p-3 bg-light'><input type='checkbox' id='aceite' name='aceite' value='aceite'> <label class='form-label'  for='vehicle1'> Cambio de eliminar</label></div> </div> <div class='col-2'>   <div class='p-3 bg-light'><input  class='form-label' type='checkbox' id='frenos' name='frenos' value='frenos'>  <label  class='form-label' for='vehicle2'> Frenos</label></div> </div> <div class='col-2'>  <div class='p-3 bg-light'><input class='form-label'  type='checkbox' id='llantas' name='llantas' value='llantas'>     <label class='form-label' for='vehicle3'> Llantas</label></div> ";
+        }
+    }
+    /*function insertar() {
+        if (document.getElementById("opciones_ad").value = "insertar") {
+            return document.getElementById("contenido_administrador").innerHTML = "<div class='col-2' >    <div class='p-3 bg-light'></div> </div> <div class='col-2'> <div class='p-3 bg-light'><input type='checkbox' id='aceite' name='aceite' value='aceite'> <label class='form-label'  for='vehicle1'> Cambio de insertar</label></div> </div> <div class='col-2'>   <div class='p-3 bg-light'><input  class='form-label' type='checkbox' id='frenos' name='frenos' value='frenos'>  <label  class='form-label' for='vehicle2'> Frenos</label></div> </div> <div class='col-2'>  <div class='p-3 bg-light'><input class='form-label'  type='checkbox' id='llantas' name='llantas' value='llantas'>     <label class='form-label' for='vehicle3'> Llantas</label></div> ";
+        }
+    }
+
+    function actualizar() {
+        if (document.getElementById("opciones_ad").value = "actualizar") {
+            return document.getElementById("contenido_administrador").innerHTML = "<div class='col-2' >    <div class='p-3 bg-light'></div> </div> <div class='col-2'> <div class='p-3 bg-light'><input type='checkbox' id='aceite' name='aceite' value='aceite'> <label class='form-label'  for='vehicle1'> Cambio de actualizar</label></div> </div> <div class='col-2'>   <div class='p-3 bg-light'><input  class='form-label' type='checkbox' id='frenos' name='frenos' value='frenos'>  <label  class='form-label' for='vehicle2'> Frenos</label></div> </div> <div class='col-2'>  <div class='p-3 bg-light'><input class='form-label'  type='checkbox' id='llantas' name='llantas' value='llantas'>     <label class='form-label' for='vehicle3'> Llantas</label></div> ";
+        }
+    }
+
+    function eliminar() {
+        if (document.getElementById("opciones_ad").value = "eliminar") {
+            return document.getElementById("contenido_administrador").innerHTML = "<div class='col-2' >    <div class='p-3 bg-light'></div> </div> <div class='col-2'> <div class='p-3 bg-light'><input type='checkbox' id='aceite' name='aceite' value='aceite'> <label class='form-label'  for='vehicle1'> Cambio de eliminar</label></div> </div> <div class='col-2'>   <div class='p-3 bg-light'><input  class='form-label' type='checkbox' id='frenos' name='frenos' value='frenos'>  <label  class='form-label' for='vehicle2'> Frenos</label></div> </div> <div class='col-2'>  <div class='p-3 bg-light'><input class='form-label'  type='checkbox' id='llantas' name='llantas' value='llantas'>     <label class='form-label' for='vehicle3'> Llantas</label></div> ";
+        }
+    }*/
+    </script>
 </body>
 
 </html>

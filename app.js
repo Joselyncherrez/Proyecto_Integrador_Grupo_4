@@ -20,8 +20,8 @@ app.use(cors());
 const client = new Client({
     user: 'postgres',
     host: 'localhost',
-    database: 'Dimensional_autos',
-    password: '12345',
+    database: 'Dimensional_Autos',
+    password: 'Admin*1234',
     port: 5432,
 });
 
@@ -41,7 +41,6 @@ app.get('/api/carros', function(req, res) {
 
     var query = " Select dim_carro.*, kilometro, caja_cambios, precio from dim_carro, fact_automoviles, dim_revision";
     query += " where dim_carro.sk_carro = fact_automoviles.sk_carro AND dim_revision.sk_revision = fact_automoviles.sk_revision";
-    query += "AND 1=1";
 
     if (req.query.tipoVehiculo != undefined && req.query.tipoVehiculo != '')
         query += " AND tipo_vehiculo = '" + req.query.tipoVehiculo + "'";
