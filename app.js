@@ -137,7 +137,7 @@ app.post('/api/insertar_datos', function(req, res) {
     const userData = req.body;
     //consulta..
 
-    let query = ` insert into Dimensional_pr (sk_carro, sk_revision, sk_ventas, sk_concesionario,sk_fecha, kilometro, precio, potencia_ps, codigo_postal) values ('${userData.user}', '${userData.password}','USER_ROLE')`;
+    let query = ` insert into fact_automoviles (sk_carro, sk_revision, sk_ventas, sk_concesionario,sk_fecha, kilometro, precio, potencia_ps, codigo_postal) values ('${userData.sk_carro}', '${userData.sk_revision}','${userData.sk_ventas}', '${userData.sk_concesionario}','${userData.sk_fecha}', '${userData.kilometro}','${userData.precio}', '${userData.potencia_ps}','${userData.codigo_postal}')`;
 
 
 
