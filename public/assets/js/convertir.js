@@ -29,61 +29,21 @@ function downloadURI(uri, name) {
 // PDF
 
 //EXCEL
-function descargarEXCEL() {
 
-
-    var csv_data = [];
-
-    // Get each row data
-    var rows = document.getElementsByTagName('tr');
-    for (var i = 0; i < rows.length; i++) {
-
-        // Get each column data
-        var cols = rows[i].querySelectorAll('td,th');
-
-        // Stores each csv row data
-        var csvrow = [];
-        for (var j = 0; j < cols.length; j++) {
-
-            // Get the text data of each cell of
-            // a row and push it to csvrow
-            csvrow.push(cols[j].innerHTML);
-        }
-
-        // Combine each column value with comma
-        csv_data.push(csvrow.join(","));
+var tableToExcel = (function() {
+    var uri = 'data:application/vnd.ms-excel;base64,',
+        template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 10]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
+        base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) },
+        format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+    return function(table, name) {
+        if (!table.nodeType) table = document.getElementById(table)
+        var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+        window.location.href = uri + base64(format(template, ctx))
     }
-    // combine each row data with new line character
-    csv_data = csv_data.join('\n');
+})()
 
-    downloadCSVFile(csv_data);
-
-
+function requestDescargar() {
+    tableToExcel('tabla_principal', 'Reportes')
 }
 
-function downloadCSVFile(csv_data) {
-
-    // Create CSV file object and feed
-    // our csv_data into it
-    CSVFile = new Blob([csv_data], {
-        type: "text/csv"
-    });
-
-    // Create to temporary link to initiate
-    // download process
-    var temp_link = document.createElement('a');
-
-    // Download csv file
-    temp_link.download = "Tabla.csv";
-    var url = window.URL.createObjectURL(CSVFile);
-    temp_link.href = url;
-
-    // This link should not be displayed
-    temp_link.style.display = "none";
-    document.body.appendChild(temp_link);
-
-    // Automatically click the link to
-    // trigger download
-    temp_link.click();
-    document.body.removeChild(temp_link);
-}
+$('#btnDescargar').on('click', requestDescargar);
