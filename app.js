@@ -20,7 +20,7 @@ app.use(cors());
 const client = new Client({
     user: 'postgres',
     host: 'localhost',
-    database: 'Dimensional_pr',
+    database: 'Dimensional_autos',
     password: '12345',
     port: 5432,
 });
@@ -40,17 +40,17 @@ app.get('/api/carros', function(req, res) {
     console.info(req.query);
 
     var query = " Select dim_carro.*, kilometro, caja_cambios, precio from dim_carro, fact_automoviles, dim_revision";
-    query += "where dim_carro.sk_carro = fact_automoviles.sk_carro  AND dim_revision.sk_revision = fact_automoviles.sk_revision";
-    query += "inner join ventas on carro.id_carro = ventas.id_carro ";
+    query += " where dim_carro.sk_carro = fact_automoviles.sk_carro AND dim_revision.sk_revision = fact_automoviles.sk_revision";
     query += "AND 1=1";
+
     if (req.query.tipoVehiculo != undefined && req.query.tipoVehiculo != '')
         query += " AND tipo_vehiculo = '" + req.query.tipoVehiculo + "'";
 
     if (req.query.modelo != undefined && req.query.modelo != '')
-        query += " AND  modelo = '" + req.query.modelo + "'";
+        query += " AND  modelo_carro = '" + req.query.modelo + "'";
 
     if (req.query.marca != undefined && req.query.marca != '')
-        query += " AND marca = '" + req.query.marca + "'";
+        query += " AND marca_carro = '" + req.query.marca + "'";
 
     if (req.query.tipoCombustible != undefined && req.query.tipoCombustible != '')
         query += " AND tipo_combustible = '" + req.query.tipoCombustible + "'";
@@ -62,7 +62,7 @@ app.get('/api/carros', function(req, res) {
     console.log("Obteniendo data...");
     client.query(query, (err, result) => {
 
-        if (err) return sendError(err);
+        if (err) return res.sendStatus(500);
 
         console.log("Data encontrada: " + result.rowCount);
         return res.json(result.rows);
@@ -78,7 +78,7 @@ app.get('/api/modelos', function(req, res) {
     console.log("Obteniendo data...");
     client.query(query, (err, result) => {
 
-        if (err) return sendError(err);
+        if (err) return res.sendStatus(500);
 
         console.log("Data encontrada: " + result.rowCount);
         return res.json(result.rows);
@@ -94,7 +94,7 @@ app.get('/api/marcas', function(req, res) {
     console.log("Obteniendo data...");
     client.query(query, (err, result) => {
 
-        if (err) return sendError(err);
+        if (err) return res.sendStatus(500);
 
         console.log("Data encontrada: " + result.rowCount);
         return res.json(result.rows);
@@ -110,7 +110,7 @@ app.get('/api/tipo/vehiculos', function(req, res) {
     console.log("Obteniendo data...");
     client.query(query, (err, result) => {
 
-        if (err) return sendError(err);
+        if (err) return res.sendStatus(500);
 
         console.log("Data encontrada: " + result.rowCount);
         return res.json(result.rows);
@@ -126,7 +126,7 @@ app.get('/api/tipo/combustibles', function(req, res) {
     console.log("Obteniendo data...");
     client.query(query, (err, result) => {
 
-        if (err) return sendError(err);
+        if (err) return res.sendStatus(500);
 
         console.log("Data encontrada: " + result.rowCount);
         return res.json(result.rows);
@@ -161,11 +161,11 @@ app.post('/api/insertar_datos', function(req, res) {
 });
 
 app.put('/api/actualizar_datos', function(req, res) {
-    if (err) return sendError(err);
+    if (err) return res.sendStatus(500);
 });
 
 app.delete('/api/eliminar_datos', function(req, res) {
-    if (err) return sendError(err);
+    if (err) return res.sendStatus(500);
 });
 
 app.get('/api/tabla_fact', function(req, res) {
@@ -175,7 +175,7 @@ app.get('/api/tabla_fact', function(req, res) {
     console.log("Obteniendo data...");
     client.query(query, (err, result) => {
 
-        if (err) return sendError(err);
+        if (err) return res.sendStatus(500);
 
         console.log("Data encontrada: " + result.rowCount);
         return res.json(result.rows);
@@ -187,7 +187,7 @@ var sendError = function(err) {
     console.log("Error al obtener la data");
     console.log(err);
     return res.sendStatus(500);
-};
+}
 
 app.listen(8000, () => {
     console.log('Escuchando en el puerto: ', 8000);

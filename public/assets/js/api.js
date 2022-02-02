@@ -13,7 +13,7 @@ function obtenerMarcas(userData = {}) {
         .done((data) => {
             data.forEach(element => {
 
-                $('#marcas').append(`<option value="${element.marca}">${element.marca}</option>`);
+                $('#marcas').append(`<option value="${element.marca_carro}">${element.marca_carro}</option>`);
             });
         })
         .fail(function(err) {
@@ -44,12 +44,12 @@ function obtenerModelos() {
                 $('#modelos').find('option').remove()
                 $('#modelos').append('<option value="">Seleccionar modelo</option>')
                 const filterData = data.filter((element) => {
-                    return element.marca == marca;
+                    return element.marca_carro == marca;
                 })
 
                 filterData.forEach(element => {
 
-                    $('#modelos').append(`<option value="${element.modelo}">${element.modelo}</option>`);
+                    $('#modelos').append(`<option value="${element.modelo_carro}">${element.modelo_carro}</option>`);
                 });
             })
             .fail(function(err) {
@@ -126,7 +126,7 @@ function filtrarCarros() {
 
     }
 
-    $.ajax(`${server}/api/carros?}marca=${values.marca}&modelo=${values.modelo}&tipoVehiculo=${values.tipoVehiculo}&tipoCombustible=${values.tipoCombustible}`, options, function()
+    $.ajax(`${server}/api/carros?marca=${values.marca}&modelo=${values.modelo}&tipoVehiculo=${values.tipoVehiculo}&tipoCombustible=${values.tipoCombustible}`, options, function()
 
             {}
 
@@ -141,9 +141,9 @@ function filtrarCarros() {
                 data.forEach(element => {
                     html += '' +
                         '<tr>' +
-                        '<td>' + element.id_carro + '</td>' +
-                        '<td>' + element.marca + '</td>' +
-                        '<td>' + element.modelo + '</td>' +
+                        '<td>' + element.pk_carro + '</td>' +
+                        '<td>' + element.marca_carro + '</td>' +
+                        '<td>' + element.modelo_carro + '</td>' +
                         '<td>' + element.tipo_vehiculo + '</td>' +
                         '<td>' + element.tipo_combustible + '</td>' +
                         '<td>' + element.kilometro + '</td>' +
@@ -176,7 +176,6 @@ function filtrarCarros() {
             graficar(map);
         })
         .fail(function(err) {
-            debugger;
             console.log(err);
         })
 }
@@ -184,23 +183,22 @@ function filtrarCarros() {
 function mostrar_tabla() {
     const server = "http://localhost:8000";
     const options = {
-        method: 'GET',
-        headers: new Headers({
-            'Content-Type': 'application/json'
-        })
-    }
-    userData = {
-        //añadir campos de la tabla fact
-        sk_carro: document.getElementById('inputEmail').value,
-        password: document.getElementById('inputPassword').value
-    }
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        }
+        /*userData = {
+            //añadir campos de la tabla fact
+            sk_carro: document.getElementById('inputEmail').value,
+            password: document.getElementById('inputPassword').value
+        }*/
     $.ajax(`${server}/api/tabla_fact`, options, function()
 
             {}
 
         )
         .done(data => {
-
             $('#fact tr').not(':first').remove();
             var html = '';
             //Verifica que si haya data
@@ -208,26 +206,16 @@ function mostrar_tabla() {
                 data.forEach(element => {
                     html += '' +
                         '<tr>' +
-                        '<td>' + element.id_carro + '</td>' +
-                        '<td>' + element.marca + '</td>' +
-                        '<td>' + element.modelo + '</td>' +
-                        '<td>' + element.tipo_vehiculo + '</td>' +
-                        '<td>' + element.tipo_combustible + '</td>' +
+                        '<td>' + element.sk_carro + '</td>' +
+                        '<td>' + element.sk_revision + '</td>' +
+                        '<td>' + element.sk_ventas + '</td>' +
+                        '<td>' + element.sk_concesionario + '</td>' +
+                        '<td>' + element.sk_fecha + '</td>' +
                         '<td>' + element.kilometro + '</td>' +
-                        '<td>' + element.caja_cambios + '</td>' +
+                        '<td>' + element.precio + '</td>' +
+                        '<td>' + element.potencia_ps + '</td>' +
+                        '<td>' + element.codigo_postal + '</td>' +
                         '</tr>';
-                    if (map.has(element.tipo_vehiculo)) {
-                        var arreglo = map.get(element.tipo_vehiculo);
-                        arreglo.push(element.precio);
-
-                        var set = new Set(arreglo);
-                        map.set(element.tipo_vehiculo, Array.from(set));
-                    } else {
-                        var arreglo = [element.precio];
-                        map.set(element.tipo_vehiculo, arreglo);
-                    }
-
-
                 });
             } else {
                 html += '<tr>' +
@@ -237,10 +225,7 @@ function mostrar_tabla() {
             }
 
             //Se crea los registros
-            $('#carros tr').first().after(html);
-            //Grafica
-            //Metodos de highcharts.js
-            graficar(map);
+            $('#fact tr').first().after(html);
         })
         .fail(function(err) {
             debugger;
