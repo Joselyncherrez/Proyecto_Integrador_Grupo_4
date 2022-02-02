@@ -20,7 +20,7 @@ app.use(cors());
 const client = new Client({
     user: 'postgres',
     host: 'localhost',
-    database: 'Dimensional_Autos',
+    database: 'Dimensional_pr',
     password: '12345',
     port: 5432,
 });
@@ -55,11 +55,6 @@ app.get('/api/carros', function(req, res) {
     if (req.query.tipoCombustible != undefined && req.query.tipoCombustible != '')
         query += " AND tipo_combustible = '" + req.query.tipoCombustible + "'";
 
-    if (req.query.precio != undefined && req.query.precio != '')
-        query += " AND precio = '" + req.query.precio + "'";
-
-    if (req.query.tipoOferta != undefined && req.query.tipoOferta != '')
-        query += " AND tipo_oferta = '" + req.query.tipoOferta + "'";
 
     query += " order by pk_carro asc";
 
@@ -140,7 +135,29 @@ app.get('/api/tipo/combustibles', function(req, res) {
 });
 
 app.post('/api/insertar_datos', function(req, res) {
-    if (err) return sendError(err);
+    const userData = req.body;
+    //consulta..
+
+    let query = ` insert into Dimensional_pr (sk_carro, sk_revision, sk_ventas, sk_concesionario,sk_fecha, kilometro, precio, potencia_ps, codigo_postal) values ('${userData.user}', '${userData.password}','USER_ROLE')`;
+
+
+
+    client.query(query, (err, result) => {
+        if (err) {
+            return res.sendStatus(500);
+        }
+        if (result.rowCount == 0) {
+            return res.sendStatus(500);
+        }
+        return res.json({
+            code: 200,
+            data: result.rows[0]
+        })
+
+
+
+    });
+
 });
 
 app.put('/api/actualizar_datos', function(req, res) {
@@ -149,6 +166,21 @@ app.put('/api/actualizar_datos', function(req, res) {
 
 app.delete('/api/eliminar_datos', function(req, res) {
     if (err) return sendError(err);
+});
+
+app.get('/api/tabla_fact', function(req, res) {
+
+    var query = 'select * from fact_automoviles;';
+
+    console.log("Obteniendo data...");
+    client.query(query, (err, result) => {
+
+        if (err) return sendError(err);
+
+        console.log("Data encontrada: " + result.rowCount);
+        return res.json(result.rows);
+    });
+
 });
 
 var sendError = function(err) {
