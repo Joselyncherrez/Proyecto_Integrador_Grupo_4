@@ -159,8 +159,6 @@ function filtrarCarros() {
                         var arreglo = [element.precio];
                         map.set(element.tipo_vehiculo, arreglo);
                     }
-
-
                 });
             } else {
                 html += '<tr>' +

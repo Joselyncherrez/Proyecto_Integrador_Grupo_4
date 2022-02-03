@@ -117,48 +117,51 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <dd text_align="left">
                     &nbsp;
                     Marcas
-                <select id="marcas" name="marcas" text_align="right">
-                    <option value="" selected >Seleccionar marca</option> </br>
+                <select id="marcas" name="marcas" text_align="right" class="form-control form-control-width-small">
+                    <option value="" selected >Seleccionar marca</option>
                 </select>
                 </dd>
+                </br>
+
                 <dd>
                     &nbsp;
                     Modelos
-                <select id="modelos" name="modelos">
+                <select id="modelos" name="modelos" class="form-control form-control-width-small">
                     <option value="" selected >Seleccionar modelo</option>
                 </select>
                 </dd>
-                <dd>
+                </div>
+
+                <div class=" text-left">
+                <div class="col-md-6 offset-6 inner">
+                <dl>
+                <dd text_align="left">
                     &nbsp;
                     Tipos de vehículos
-                <select id="tiposVehiculos" name="tiposVehiculos">
+                <select id="tiposVehiculos" name="tiposVehiculos" text_align="right" class="form-control form-control-width-small">
                     <option value="" selected >Seleccionar tipo de vehículo</option>
+                </select>
+                </dd>
+                </br>
+                
+                <dd text_align="left">
+                    &nbsp;
+                    Tipos de combustibles
+                <select id="tiposCombustibles" name="tiposCombustibles" class="form-control form-control-width-small">
+                    <option value="" selected >Seleccionar tipo de combustible</option> 
                 </select>
                 </dd>
                 </dl>
                 </div>
-
-                <div class="my-3 col-md-6 text-left">
-                <dl>
-                <dd>
-                    &nbsp;
-                    Tipos de combustibles
-                <select id="tiposCombustibles" name="tiposCombustibles">
-                    <option value="" selected >Seleccionar tipo de combustible</option>
-                </select>
-                </dd>
+                </div>
                 
-               </div>
-               </div>
-
-
                 <button type="button" class="btn btn-outline-warning" onclick="filtrarCarros()">Filtrar</button>
 
                 <!-- grafica -->
                 <figure class="highcharts-figure">
                     <div id="container" style="display: flow-root;"></div>
                 </figure>
-                    
+    
                     <!-- tabla -->
                     <div class="mt-5" id="tabla_principal">
                         <table id="carros" name="carros" class="table">
@@ -179,18 +182,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </table>
                     </div>
                      <!--BOTONES PARA CONVERTIR-->
-                <div class="btn-group" role="group" aria-label="Basic example">
-
-                      <button type="button" class="btn btn-danger" id="btnPDF" onclick="func_pdf()">
-                        <i class="mdi mdi-file-pdf btn-icon-prepend"></i>PDF</button>
-                      <button type="button" class="btn btn-success" id="btnExcel" onclick="requestDescargar()">
-                        <i class="mdi mdi-file-excel btn-icon-prepend"></i>Excel</button>
+                    <div class=" text-center">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-danger" id="btnPDF" onclick="funcpdf()">
+                                <i class="mdi mdi-file-pdf btn-icon-prepend"></i>PDF</button>
+                            <button type="button" class="btn btn-success" id="btnExcel" onclick="requestDescargar()">
+                                <i class="mdi mdi-file-excel btn-icon-prepend"></i>Excel</button>
                 <!--FIN BOTONES PARA CONVERTIR-->       
             </div>
             <!--Fin tabla-->
         </div>
-        
     </div>
+    </div>
+</div>
 
 <!-- Reportes-->
     <!-- footer -->
@@ -291,7 +295,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- //scrolling script -->
 <script>
     /*SCRIPT PARA COONVERTIR TABLA A PDF*/
-    function func_pdf() {
+    function funcpdf() {
         var tabla = document.getElementById('tabla_principal').innerHTML;
 
             var style = "<style>";
