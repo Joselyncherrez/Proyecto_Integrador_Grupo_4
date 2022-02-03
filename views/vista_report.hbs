@@ -14,7 +14,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="CONCESIONARIA Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-    <script type="application/x-javascript">
+    <script type="application/x-javascript">   
         addEventListener("load", function() {
             setTimeout(hideURLbar, 0);
         }, false);
@@ -180,8 +180,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                      <!--BOTONES PARA CONVERTIR-->
                 <div class="btn-group" role="group" aria-label="Basic example">
-                      <button type="button" class="btn btn-danger" id="btnPDF" >
-                        <i class="mdi mdi-file-pdf btn-icon-prepend" onclick="downloadDoc()"></i>PDF</button>
+                      <button type="button" class="btn btn-danger" id="btnPDF" onclick="func_pdf()">
+                        <i class="mdi mdi-file-pdf btn-icon-prepend"></i>PDF</button>
                       <button type="button" class="btn btn-success" id="btnExcel">
                         <i class="mdi mdi-file-excel btn-icon-prepend"></i>Excel</button>
                 <!--FIN BOTONES PARA CONVERTIR-->       
@@ -287,55 +287,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
     <!-- //scrolling script -->
 <script>
-    /SCRIPT PARA COONVERTIR TABLA A PDF/
-        
+    /*SCRIPT PARA COONVERTIR TABLA A PDF*/
     function func_pdf() {
-            var sTable = document.getElementById('tabla_principal').innerHTML;
+        var tabla = document.getElementById('tabla_principal').innerHTML;
 
             var style = "<style>";
             style = style + "table {width: 100%;font: 17px Calibri;}";
             style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
             style = style + "padding: 2px 3px;text-align: center;}";
             style = style + "</style>";
+            
+            var win = document.createElement("a");
 
-            // CREATE A WINDOW OBJECT.
             var win = window.open('', '', 'height=700,width=700');
 
             win.document.write('<html><head>');
-            win.document.write('<title>Profile</title>');   // <title> FOR PDF HEADER.
-            win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
+            win.document.write('<title>Tabla Consesionaria</title>');   
+            win.document.write(style);          
             win.document.write('</head>');
             win.document.write('<body>');
-            win.document.write(sTable);         // THE TABLE CONTENTS INSIDE THE BODY TAG.
+            win.document.write(tabla);         
             win.document.write('</body></html>');
 
-            win.document.close(); 	// CLOSE THE CURRENT WINDOW.
+            win.document.close(); 
 
-            win.print();    // PRINT THE CONTENTS.
+            win.print(); 
         }
-
-
-    /FIN SCRIPT PARA COONVERTIR TABLA A PDF/
+    /*FIN SCRIPT PARA COONVERTIR TABLA A PDF*/
 </script>
-<script>
-    /SCRIPT PARA COONVERTIR TABLA A PDF/
-    function downloadDoc(){
-
-  html2canvas($("#tabla_principal")[0],{   /*LLAMADA ALA TABLA POR ID */
-    onrendered:function(canvas){
-      var data=canvas.toDataURL();
-      var docDefinition={
-        content:[{
-          image:data,
-          width:500
-        }]
-      };
-      pdfMake.createPdf(docDefinition).download("Tabla.pdf");
-    }
-  })
-    }
-  /FIN SCRIPT PARA COONVERTIR TABLA A PDF/
-  </script>
 </body>
-
 </html>
