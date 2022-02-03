@@ -131,13 +131,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
             <p class="w3ls-p">Usted puede Insertar, Borrar, y Actualizar los registros de la base de datos</p>
             <br>
-            <div class="separacion">
-                <select class="form-select" id="opciones_ad" aria-label="Default select example">
-                    <option value="" id="vacio">Seleccione una opcion</option>
-                    <option value="insertar">Insertar</option>
-                    <option value="actualizar">Actualizar</option>
-                    <option value="eliminar">Eliminar</option>
-                </select>
+            <div>
+                <button type="button" class="btn btn-outline-warning" onclick="insertar()">Insertar</button>
+                <button type="button" class="btn btn-outline-warning" onclick="actualizar()">Actualizar</button>
+                <button type="button" class="btn btn-outline-warning" onclick="eliminar()">Eliminar</button>
             </div>
             <br>
             <div id="contenido_administrador">
@@ -236,33 +233,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
     <!-- //scrolling script -->
     <script type="text/javascript">
-    document.getElementById("opciones_ad").onchange = opciones_pos;
-    function opciones_post(){
-        if(document.getElementById("opciones_ad").value=="insertar"){
-        return document.getElementById("contenido_administrador").innerHTML = "<div class='col-2' >    <div class='p-3 bg-light'></div> </div> <div class='col-2'> <div class='p-3 bg-light'><input type='checkbox' id='aceite' name='aceite' value='aceite'> <label class='form-label'  for='vehicle1'> Cambio de insertar</label></div> </div> <div class='col-2'>   <div class='p-3 bg-light'><input  class='form-label' type='checkbox' id='frenos' name='frenos' value='frenos'>  <label  class='form-label' for='vehicle2'> Frenos</label></div> </div> <div class='col-2'>  <div class='p-3 bg-light'><input class='form-label'  type='checkbox' id='llantas' name='llantas' value='llantas'>     <label class='form-label' for='vehicle3'> Llantas</label></div> ";
-        }else if(document.getElementById("opciones_ad").value=="actualizar"){
-        return document.getElementById("contenido_administrador").innerHTML = "<div class='col-2' >    <div class='p-3 bg-light'></div> </div> <div class='col-2'> <div class='p-3 bg-light'><input type='checkbox' id='aceite' name='aceite' value='aceite'> <label class='form-label'  for='vehicle1'> Cambio de actualizar</label></div> </div> <div class='col-2'>   <div class='p-3 bg-light'><input  class='form-label' type='checkbox' id='frenos' name='frenos' value='frenos'>  <label  class='form-label' for='vehicle2'> Frenos</label></div> </div> <div class='col-2'>  <div class='p-3 bg-light'><input class='form-label'  type='checkbox' id='llantas' name='llantas' value='llantas'>     <label class='form-label' for='vehicle3'> Llantas</label></div> ";
-        }else if(document.getElementById("opciones_ad").value=="eliminar"){
-        return document.getElementById("contenido_administrador").innerHTML = "<div class='col-2' >    <div class='p-3 bg-light'></div> </div> <div class='col-2'> <div class='p-3 bg-light'><input type='checkbox' id='aceite' name='aceite' value='aceite'> <label class='form-label'  for='vehicle1'> Cambio de eliminar</label></div> </div> <div class='col-2'>   <div class='p-3 bg-light'><input  class='form-label' type='checkbox' id='frenos' name='frenos' value='frenos'>  <label  class='form-label' for='vehicle2'> Frenos</label></div> </div> <div class='col-2'>  <div class='p-3 bg-light'><input class='form-label'  type='checkbox' id='llantas' name='llantas' value='llantas'>     <label class='form-label' for='vehicle3'> Llantas</label></div> ";
-        }
-    }
-    /*function insertar() {
-        if (document.getElementById("opciones_ad").value = "insertar") {
-            return document.getElementById("contenido_administrador").innerHTML = "<div class='col-2' >    <div class='p-3 bg-light'></div> </div> <div class='col-2'> <div class='p-3 bg-light'><input type='checkbox' id='aceite' name='aceite' value='aceite'> <label class='form-label'  for='vehicle1'> Cambio de insertar</label></div> </div> <div class='col-2'>   <div class='p-3 bg-light'><input  class='form-label' type='checkbox' id='frenos' name='frenos' value='frenos'>  <label  class='form-label' for='vehicle2'> Frenos</label></div> </div> <div class='col-2'>  <div class='p-3 bg-light'><input class='form-label'  type='checkbox' id='llantas' name='llantas' value='llantas'>     <label class='form-label' for='vehicle3'> Llantas</label></div> ";
-        }
+    let html = ""
+    function insertar() {
+        return document.getElementById("contenido_administrador").innerHTML = "<div class='row g-3'>" +
+        "   <input type='text' class='form-control' id='inputSkCarro' placeholder='Ingrese el sk_carro a insertar' required>" +
+        "   <input type='text' class='form-control' id='inputSkRevision' placeholder='Ingrese el sk_revision a insertar' required>"+
+        "   <input type='text' class='form-control' id='inputSkVentas' placeholder='Ingrese el sk_ventas a insertar' required>"+
+        "   <input type='text' class='form-control' id='inputSkConcesionario' placeholder='Ingrese el sk_concesionario a insertar' required>"+
+        "   <input type='text' class='form-control' id='inputSkFecha' placeholder='Ingrese el sk_fecha a insertar' required>"+
+        "   <input type='text' class='form-control' id='inputKilometro' placeholder='Ingrese el kilometraje a insertar' required>"+
+        "   <input type='text' class='form-control' id='inputPrecio' placeholder='Ingrese el precio a insertar' required>"+
+        "   <input type='text' class='form-control' id='inputPotenciaPs' placeholder='Ingrese la potencia a insertar' required>"+
+        "   <input type='text' class='form-control' id='inputCodigoPostal' placeholder='Ingrese el codigo postal a insertar' required>  <br>"+
+        "   <button type='button' class='btn btn-outline-warning' onclick='insertar_registros()'>Aplicar</button>";
     }
 
     function actualizar() {
-        if (document.getElementById("opciones_ad").value = "actualizar") {
-            return document.getElementById("contenido_administrador").innerHTML = "<div class='col-2' >    <div class='p-3 bg-light'></div> </div> <div class='col-2'> <div class='p-3 bg-light'><input type='checkbox' id='aceite' name='aceite' value='aceite'> <label class='form-label'  for='vehicle1'> Cambio de actualizar</label></div> </div> <div class='col-2'>   <div class='p-3 bg-light'><input  class='form-label' type='checkbox' id='frenos' name='frenos' value='frenos'>  <label  class='form-label' for='vehicle2'> Frenos</label></div> </div> <div class='col-2'>  <div class='p-3 bg-light'><input class='form-label'  type='checkbox' id='llantas' name='llantas' value='llantas'>     <label class='form-label' for='vehicle3'> Llantas</label></div> ";
-        }
+        return document.getElementById("contenido_administrador").innerHTML = "<div class='row g-3'>" +
+        "   <input type='text' class='form-control' id='inputSkCarro' placeholder='Ingrese el sk_carro a actualizar' required>" +
+        "   <input type='text' class='form-control' id='inputSkRevision' placeholder='Ingrese el sk_revision a actualizar' required>"+
+        "   <input type='text' class='form-control' id='inputSkVentas' placeholder='Ingrese el sk_ventas a actualizar' required>"+
+        "   <input type='text' class='form-control' id='inputSkConcesionario' placeholder='Ingrese el sk_concesionario a actualizar' required>"+
+        "   <input type='text' class='form-control' id='inputSkFecha' placeholder='Ingrese el sk_fecha a actualizar' required>"+
+        "   <input type='text' class='form-control' id='inputKilometro' placeholder='Ingrese el kilometraje a actualizar' required>"+
+        "   <input type='text' class='form-control' id='inputPrecio' placeholder='Ingrese el precio a actualizar' required>"+
+        "   <input type='text' class='form-control' id='inputPotenciaPs' placeholder='Ingrese la potencia a actualizar' required>"+
+        "   <input type='text' class='form-control' id='inputCodigoPostal' placeholder='Ingrese el codigo postal a actualizar' required> <br> <br>"+
+
+        "   <input type='text' class='form-control' id='inputSkCarroA' placeholder='Ingrese el sk_carro actualizado' required>" +
+        "   <input type='text' class='form-control' id='inputSkRevisionA' placeholder='Ingrese el sk_revision actualizado' required>"+
+        "   <input type='text' class='form-control' id='inputSkVentasA' placeholder='Ingrese el sk_ventas actualizado' required>"+
+        "   <input type='text' class='form-control' id='inputSkConcesionarioA' placeholder='Ingrese el sk_concesionario actualizado' required>"+
+        "   <input type='text' class='form-control' id='inputSkFechaA' placeholder='Ingrese el sk_fecha actualizado' required>"+
+        "   <input type='text' class='form-control' id='inputKilometroA' placeholder='Ingrese el kilometraje actualizado' required>"+
+        "   <input type='text' class='form-control' id='inputPrecioA' placeholder='Ingrese el precio actualizado' required>"+
+        "   <input type='text' class='form-control' id='inputPotenciaPsA' placeholder='Ingrese la potencia actualizado' required>"+
+        "   <input type='text' class='form-control' id='inputCodigoPostalA' placeholder='Ingrese el codigo postal actualizado' required>";
     }
 
-    function eliminar() {
-        if (document.getElementById("opciones_ad").value = "eliminar") {
-            return document.getElementById("contenido_administrador").innerHTML = "<div class='col-2' >    <div class='p-3 bg-light'></div> </div> <div class='col-2'> <div class='p-3 bg-light'><input type='checkbox' id='aceite' name='aceite' value='aceite'> <label class='form-label'  for='vehicle1'> Cambio de eliminar</label></div> </div> <div class='col-2'>   <div class='p-3 bg-light'><input  class='form-label' type='checkbox' id='frenos' name='frenos' value='frenos'>  <label  class='form-label' for='vehicle2'> Frenos</label></div> </div> <div class='col-2'>  <div class='p-3 bg-light'><input class='form-label'  type='checkbox' id='llantas' name='llantas' value='llantas'>     <label class='form-label' for='vehicle3'> Llantas</label></div> ";
-        }
-    }*/
+    function eliminar() {        
+        return document.getElementById("contenido_administrador").innerHTML = "<div class='row g-3'>" +
+        "   <input type='text' class='form-control' id='inputSkCarro' placeholder='Ingrese el sk_carro a eliminar' required>" +
+        "   <input type='text' class='form-control' id='inputSkRevision' placeholder='Ingrese el sk_revision a eliminar' required>"+
+        "   <input type='text' class='form-control' id='inputSkVentas' placeholder='Ingrese el sk_ventas a eliminar' required>"+
+        "   <input type='text' class='form-control' id='inputSkConcesionario' placeholder='Ingrese el sk_concesionario a eliminar' required>"+
+        "   <input type='text' class='form-control' id='inputSkFecha' placeholder='Ingrese el sk_fecha a eliminar' required>"+
+        "   <input type='text' class='form-control' id='inputKilometro' placeholder='Ingrese el kilometraje a eliminar' required>"+
+        "   <input type='text' class='form-control' id='inputPrecio' placeholder='Ingrese el precio a eliminar' required>"+
+        "   <input type='text' class='form-control' id='inputPotenciaPs' placeholder='Ingrese la potencia a eliminar' required>"+
+        "   <input type='text' class='form-control' id='inputCodigoPostal' placeholder='Ingrese el codigo postal a eliminar' required>";
+    }
     </script>
 </body>
 

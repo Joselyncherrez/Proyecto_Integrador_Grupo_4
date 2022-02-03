@@ -232,3 +232,33 @@ function mostrar_tabla() {
             console.log(err);
         })
 }
+
+function insertar_registros() {
+    const server = "http://localhost:8000";
+    userData = {
+        sk_carro: document.getElementById('inputSkCarro').value,
+        sk_revision: document.getElementById('inputSkRevision').value,
+        sk_ventas: document.getElementById('inputSkVentas').value,
+        sk_concesionario: document.getElementById('inputSkConcesionario').value,
+        sk_fecha: document.getElementById('inputSkFecha').value,
+        kilometro: document.getElementById('inputKilometro').value,
+        precio: document.getElementById('inputPrecio').value,
+        potencia_ps: document.getElementById('inputPotenciaPs').value,
+        codigo_postal: document.getElementById('inputCodigoPostal').value,
+    }
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(userData),
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }
+
+    return fetch(`${server}/api/insertar_datos`, options)
+        .then(response => response.json())
+        .then(data => {
+            alert('Registro insertado')
+        })
+        .catch(error => console.error(error));
+
+}
