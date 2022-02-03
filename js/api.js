@@ -106,29 +106,7 @@ function obtenerTiposCombustibles() {
         })
 }
 
-let offset = 0;
-let page = 0;
-const limit = 10;
-
-/*function addpaginasvista() {
-    if (page != 0) {
-        offset = offset + limit;
-    }
-    page++;
-    filtrarCarros(limit, offset)
-}
-
-function respaginasvista() {
-    offset = offset - limit;
-    page--;
-    if (offset <= 0) {
-        offset = 0;
-        page = 0;
-    }
-    filtrarCarros(limit, offset)
-}*/
-
-function filtrarCarros(limit, offset) {
+function filtrarCarros() {
 
     //Oculta la gráfica
     $("#container").css({ display: "none" });
@@ -181,6 +159,8 @@ function filtrarCarros(limit, offset) {
                         var arreglo = [element.precio];
                         map.set(element.tipo_vehiculo, arreglo);
                     }
+
+
                 });
             } else {
                 html += '<tr>' +
@@ -199,6 +179,10 @@ function filtrarCarros(limit, offset) {
             console.log(err);
         })
 }
+
+let offset = 0;
+let page = 0;
+const limit = 10;
 
 function addpaginas() {
     if (page != 0) {
@@ -366,37 +350,12 @@ function buscar_registros() {
         .catch(error => console.error(error));
 }
 
-function actualizar_registros() {
-    const server = "http://localhost:8000";
-    userData = {
-        sk_carro: document.getElementById('inputSkCarro').value,
-        sk_revision: document.getElementById('inputSkRevision').value,
-        sk_ventas: document.getElementById('inputSkVentas').value,
-        sk_concesionario: document.getElementById('inputSkConcesionario').value,
-        sk_fecha: document.getElementById('inputSkFecha').value,
-        kilometro: document.getElementById('inputKilometro').value,
-        precio: document.getElementById('inputPrecio').value,
-        potencia_ps: document.getElementById('inputPotenciaPs').value,
-        codigo_postal: document.getElementById('inputCodigoPostal').value,
-
-        kilometroA: document.getElementById('inputKilometroA').value,
-        precioA: document.getElementById('inputPrecioA').value,
-        potencia_psA: document.getElementById('inputPotenciaPsA').value,
-        codigo_postalA: document.getElementById('inputCodigoPostalA').value
-    }
-    const options = {
-        method: 'PUT',
-        body: JSON.stringify(userData),
-        headers: new Headers({
-            'Content-Type': 'application/json'
-        })
-    }
-
-    return fetch(`${server}/api/actualizar_datos`, options)
-        .then(response => response.json())
-        .then(data => {
-            alert('Registro actualizado')
-        })
-        .catch(error => console.error(error));
-
-}
+/*sk_carroA: document.getElementById('inputSkCarroA').value,
+    sk_revisionA: document.getElementById('inputSkRevisionA').value,
+    sk_ventasA: document.getElementById('inputSkVentasA').value,
+    sk_concesionarioA: document.getElementById('inputSkConcesionarioA').value,
+    sk_fechaA: document.getElementById('inputSkFechaA').value,
+    kilometroA: document.getElementById('inputKilometroA').value,
+    precioA: document.getElementById('inputPrecioA').value,
+    potencia_psA: document.getElementById('inputPotenciaPsA').value,
+    codigo_postalA: document.getElementById('inputCodigoPostalA').value*/
