@@ -180,20 +180,37 @@ function filtrarCarros() {
         })
 }
 
-function mostrar_tabla() {
+let offset = 0;
+let page = 0;
+const limit = 10;
+
+function addpaginas() {
+    if (page != 0) {
+        offset = offset + limit;
+    }
+    page++;
+    mostrar_tabla(limit, offset)
+}
+
+function respaginas() {
+    offset = offset - limit;
+    page--;
+    if (offset <= 0) {
+        offset = 0;
+        page = 0;
+    }
+    mostrar_tabla(limit, offset)
+}
+
+function mostrar_tabla(limit, offset) {
     const server = "http://localhost:8000";
     const options = {
-            method: 'GET',
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            })
-        }
-        /*userData = {
-            //añadir campos de la tabla fact
-            sk_carro: document.getElementById('inputEmail').value,
-            password: document.getElementById('inputPassword').value
-        }*/
-    $.ajax(`${server}/api/tabla_fact`, options, function()
+        method: 'GET',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }
+    $.ajax(`${server}/api/tabla_fact?limit=${limit}&offset=${offset}`, options, function()
 
             {}
 
@@ -244,7 +261,7 @@ function insertar_registros() {
         kilometro: document.getElementById('inputKilometro').value,
         precio: document.getElementById('inputPrecio').value,
         potencia_ps: document.getElementById('inputPotenciaPs').value,
-        codigo_postal: document.getElementById('inputCodigoPostal').value,
+        codigo_postal: document.getElementById('inputCodigoPostal').value
     }
     const options = {
         method: 'POST',
@@ -262,3 +279,83 @@ function insertar_registros() {
         .catch(error => console.error(error));
 
 }
+
+function eliminar_registros() {
+    const server = "http://localhost:8000";
+    userData = {
+        sk_carro: document.getElementById('inputSkCarro').value,
+        /*sk_revision: document.getElementById('inputSkRevision').value,
+        sk_ventas: document.getElementById('inputSkVentas').value,
+        sk_concesionario: document.getElementById('inputSkConcesionario').value,
+        sk_fecha: document.getElementById('inputSkFecha').value,
+        kilometro: document.getElementById('inputKilometro').value,
+        precio: document.getElementById('inputPrecio').value,
+        potencia_ps: document.getElementById('inputPotenciaPs').value,
+        codigo_postal: document.getElementById('inputCodigoPostal').value,*/
+    }
+    const options = {
+        method: 'DELETE',
+        body: JSON.stringify(userData),
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }
+
+    return fetch(`${server}/api/eliminar_datos`, options)
+        .then(response => response.json())
+        .then(data => {
+            alert('Registro eliminado')
+        })
+        .catch(error => console.error(error));
+
+}
+
+function buscar_registros() {
+    const server = "http://localhost:8000";
+    const userData = {
+        sk_carro: document.getElementById('inputSkCarro').value,
+        sk_revision: document.getElementById('inputSkRevision').value,
+        sk_ventas: document.getElementById('inputSkVentas').value,
+        sk_concesionario: document.getElementById('inputSkConcesionario').value,
+        sk_fecha: document.getElementById('inputSkFecha').value,
+        kilometro: document.getElementById('inputKilometro').value,
+        precio: document.getElementById('inputPrecio').value,
+        potencia_ps: document.getElementById('inputPotenciaPs').value,
+        codigo_postal: document.getElementById('inputCodigoPostal').value
+    }
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(userData),
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }
+
+    return fetch(`${server}/api/buscar_datos`, options)
+        .then(response => response.json())
+        .then(element => {
+            if (element.code == '404') {
+                return alert("No se encontraron datos");
+            }
+
+            $('#inputSkRevision').val(String(element.data.sk_revision));
+            $('#inputSkVentas').val(String(element.data.sk_ventas));
+            $('#inputSkConcesionario').val(String(element.data.sk_concesionario));
+            $('#inputSkFecha').val(String(element.data.sk_fecha));
+            $('#inputKilometro').val(String(element.data.kilometro));
+            $('#inputPrecio').val(String(element.data.precio));
+            $('#inputPotenciaPs').val(String(element.data.potencia_ps));
+            $('#inputCodigoPostal').val(String(element.data.codigo_postal));
+        })
+        .catch(error => console.error(error));
+}
+
+/*sk_carroA: document.getElementById('inputSkCarroA').value,
+    sk_revisionA: document.getElementById('inputSkRevisionA').value,
+    sk_ventasA: document.getElementById('inputSkVentasA').value,
+    sk_concesionarioA: document.getElementById('inputSkConcesionarioA').value,
+    sk_fechaA: document.getElementById('inputSkFechaA').value,
+    kilometroA: document.getElementById('inputKilometroA').value,
+    precioA: document.getElementById('inputPrecioA').value,
+    potencia_psA: document.getElementById('inputPotenciaPsA').value,
+    codigo_postalA: document.getElementById('inputCodigoPostalA').value*/

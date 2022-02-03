@@ -10,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <head>
     <title>Concesionaria Latinoamericana | Cliente</title>
     <!-- custom-theme -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="CONCESIONARIA Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
@@ -183,9 +183,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                       <button type="button" class="btn btn-danger" id="btnPDF" onclick="func_pdf()">
                         <i class="mdi mdi-file-pdf btn-icon-prepend"></i>PDF</button>
-                   
 
-                      
+
                       <button type="button" class="btn btn-success" id="btnExcel" onclick="requestDescargar()">
 
                         <i class="mdi mdi-file-excel btn-icon-prepend"></i>Excel</button>
@@ -304,21 +303,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             style = style + "padding: 2px 3px;text-align: center;}";
             style = style + "</style>";
             
-            var win = document.createElement("a");
+            var ventana = window.open('', '', 'height=700,width=700');
 
-            var win = window.open('', '', 'height=700,width=700');
+            ventana.document.write('<html><head>');
+            ventana.document.write('<title>Tabla Concesionaria</title>');   
+            ventana.document.write(style);          
+            ventana.document.write('</head>');
+            ventana.document.write('<body>');
+            ventana.document.write(tabla);         
+            ventana.document.write('</body></html>');
 
-            win.document.write('<html><head>');
-            win.document.write('<title>Tabla Consesionaria</title>');   
-            win.document.write(style);          
-            win.document.write('</head>');
-            win.document.write('<body>');
-            win.document.write(tabla);         
-            win.document.write('</body></html>');
+            ventana.document.close(); 
 
-            win.document.close(); 
-
-            win.print(); 
+            ventana.print(); 
         }
     /*FIN SCRIPT PARA COONVERTIR TABLA A PDF*/
 </script>
