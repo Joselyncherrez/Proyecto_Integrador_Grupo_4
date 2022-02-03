@@ -38,9 +38,11 @@ app.get('/api/carros', function(req, res) {
 
     console.info("query params:")
     console.info(req.query);
+    const limit = req.query.limit;
+    const offset = req.query.offset;
 
-    var query = " Select dim_carro.*, kilometro, caja_cambios, precio from dim_carro, fact_automoviles, dim_revision";
-    query += " where dim_carro.sk_carro = fact_automoviles.sk_carro AND dim_revision.sk_revision = fact_automoviles.sk_revision";
+    var query = " Select dim_carro.*, kilometro, caja_cambios, precio from dim_carro, fact_automoviles, dim_revision ";
+    query += " where dim_carro.sk_carro = fact_automoviles.sk_carro AND dim_revision.sk_revision = fact_automoviles.sk_revision ";
 
     if (req.query.tipoVehiculo != undefined && req.query.tipoVehiculo != '')
         query += " AND tipo_vehiculo = '" + req.query.tipoVehiculo + "'";
@@ -227,6 +229,31 @@ app.get('/api/tabla_fact', function(req, res) {
         return res.json(result.rows);
     });
 
+});
+
+app.put('/api/actualizar_datos', function(req, res) {
+    const userData = req.body;
+    //consulta..
+
+    let query = `update fact_automoviles set kilometro='${userData.kilometroA}', precio='${userData.precioA}', potencia_ps='${userData.potencia_psA}',codigo_postal='${userData.codigo_postalA}' 
+     where sk_carro='${userData.sk_carro}' and sk_revision='${userData.sk_revision}' and sk_ventas='${userData.sk_ventas}' and sk_concesionario='${userData.sk_concesionario}' and sk_fecha='${userData.sk_fecha}' and kilometro='${userData.kilometro}' and precio='${userData.precio}' and potencia_ps='${userData.potencia_ps}' and codigo_postal='${userData.codigo_postal}'`;
+
+
+    client.query(query, (err, result) => {
+        if (err) {
+            return res.sendStatus(500);
+        }
+        if (result.rowCount == 0) {
+            return res.sendStatus(500);
+        }
+        return res.json({
+            code: 200,
+            data: result.rows[0]
+        })
+
+
+
+    });
 });
 
 var sendError = function(err) {
