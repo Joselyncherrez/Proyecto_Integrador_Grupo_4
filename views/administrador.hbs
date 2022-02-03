@@ -108,7 +108,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="typo">
         <div class="container">
             <h3 class="w3l-titles">MODO ADMINISTRADOR</h3>
-            <button type="button" class="btn btn-outline-warning" onclick="mostrar_tabla()">Mostrar Tabla</button>
+            <button type="button" class="btn btn-outline-warning" onclick="mostrar_tabla(10, 0)">Mostrar Tabla</button>
              <div class="mt-5" id="tabla_fact">
                         <table id="fact" name="fact" class="table">
                             <thead>
@@ -128,6 +128,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <td colspan="7" class="text-center"> No se encontraron registros </td>
                             </tbody>
                         </table>
+                        <button type='button' class='btn btn-outline-warning' onclick='addpaginas()'>+</button>
+                        <button type='button' class='btn btn-outline-warning' onclick='respaginas()'>-</button>
                     </div>
             <p class="w3ls-p">Usted puede Insertar, Borrar, y Actualizar los registros de la base de datos</p>
             <br>
@@ -250,6 +252,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     function actualizar() {
         return document.getElementById("contenido_administrador").innerHTML = "<div class='row g-3'>" +
+        "   <button type='button' class='btn btn-outline-warning' onclick='buscar_registros()'>Buscar Registro</button>"+
         "   <input type='text' class='form-control' id='inputSkCarro' placeholder='Ingrese el sk_carro a actualizar' required>" +
         "   <input type='text' class='form-control' id='inputSkRevision' placeholder='Ingrese el sk_revision a actualizar' required>"+
         "   <input type='text' class='form-control' id='inputSkVentas' placeholder='Ingrese el sk_ventas a actualizar' required>"+
@@ -260,28 +263,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         "   <input type='text' class='form-control' id='inputPotenciaPs' placeholder='Ingrese la potencia a actualizar' required>"+
         "   <input type='text' class='form-control' id='inputCodigoPostal' placeholder='Ingrese el codigo postal a actualizar' required> <br> <br>"+
 
-        "   <input type='text' class='form-control' id='inputSkCarroA' placeholder='Ingrese el sk_carro actualizado' required>" +
-        "   <input type='text' class='form-control' id='inputSkRevisionA' placeholder='Ingrese el sk_revision actualizado' required>"+
-        "   <input type='text' class='form-control' id='inputSkVentasA' placeholder='Ingrese el sk_ventas actualizado' required>"+
-        "   <input type='text' class='form-control' id='inputSkConcesionarioA' placeholder='Ingrese el sk_concesionario actualizado' required>"+
-        "   <input type='text' class='form-control' id='inputSkFechaA' placeholder='Ingrese el sk_fecha actualizado' required>"+
         "   <input type='text' class='form-control' id='inputKilometroA' placeholder='Ingrese el kilometraje actualizado' required>"+
         "   <input type='text' class='form-control' id='inputPrecioA' placeholder='Ingrese el precio actualizado' required>"+
         "   <input type='text' class='form-control' id='inputPotenciaPsA' placeholder='Ingrese la potencia actualizado' required>"+
-        "   <input type='text' class='form-control' id='inputCodigoPostalA' placeholder='Ingrese el codigo postal actualizado' required>";
+        "   <input type='text' class='form-control' id='inputCodigoPostalA' placeholder='Ingrese el codigo postal actualizado' required> <br>"+
+        "   <button type='button' class='btn btn-outline-warning' onclick='insertar_registros()'>Aplicar</button>";
     }
 
     function eliminar() {        
         return document.getElementById("contenido_administrador").innerHTML = "<div class='row g-3'>" +
         "   <input type='text' class='form-control' id='inputSkCarro' placeholder='Ingrese el sk_carro a eliminar' required>" +
-        "   <input type='text' class='form-control' id='inputSkRevision' placeholder='Ingrese el sk_revision a eliminar' required>"+
+        /*"   <input type='text' class='form-control' id='inputSkRevision' placeholder='Ingrese el sk_revision a eliminar' required>"+
         "   <input type='text' class='form-control' id='inputSkVentas' placeholder='Ingrese el sk_ventas a eliminar' required>"+
         "   <input type='text' class='form-control' id='inputSkConcesionario' placeholder='Ingrese el sk_concesionario a eliminar' required>"+
         "   <input type='text' class='form-control' id='inputSkFecha' placeholder='Ingrese el sk_fecha a eliminar' required>"+
         "   <input type='text' class='form-control' id='inputKilometro' placeholder='Ingrese el kilometraje a eliminar' required>"+
         "   <input type='text' class='form-control' id='inputPrecio' placeholder='Ingrese el precio a eliminar' required>"+
         "   <input type='text' class='form-control' id='inputPotenciaPs' placeholder='Ingrese la potencia a eliminar' required>"+
-        "   <input type='text' class='form-control' id='inputCodigoPostal' placeholder='Ingrese el codigo postal a eliminar' required>";
+        "   <input type='text' class='form-control' id='inputCodigoPostal' placeholder='Ingrese el codigo postal a eliminar' required> <br>"+*/
+        "   <button type='button' class='btn btn-outline-warning' onclick='eliminar_registros()'>Aplicar</button>";
     }
     </script>
 </body>

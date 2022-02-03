@@ -21,7 +21,7 @@ const client = new Client({
     user: 'postgres',
     host: 'localhost',
     database: 'Dimensional_Autos',
-    password: '12345',
+    password: 'Admin*1234',
     port: 5432,
 });
 
@@ -137,7 +137,7 @@ app.post('/api/insertar_datos', function(req, res) {
     const userData = req.body;
     //consulta..
 
-    let query = ` insert into fact_automoviles (sk_carro, sk_revision, sk_ventas, sk_concesionario,sk_fecha, kilometro, precio, potencia_ps, codigo_postal) values ('${userData.sk_carro}', '${userData.sk_revision}','${userData.sk_ventas}', '${userData.sk_concesionario}','${userData.sk_fecha}', '${userData.kilometro}','${userData.precio}', '${userData.potencia_ps}','${userData.codigo_postal}')`;
+    let query = `insert into fact_automoviles (sk_carro, sk_revision, sk_ventas, sk_concesionario,sk_fecha, kilometro, precio, potencia_ps, codigo_postal) values ('${userData.sk_carro}', '${userData.sk_revision}','${userData.sk_ventas}', '${userData.sk_concesionario}','${userData.sk_fecha}', '${userData.kilometro}','${userData.precio}', '${userData.potencia_ps}','${userData.codigo_postal}')`;
 
 
 
@@ -159,17 +159,64 @@ app.post('/api/insertar_datos', function(req, res) {
 
 });
 
-app.put('/api/actualizar_datos', function(req, res) {
-    if (err) return res.sendStatus(500);
+app.post('/api/buscar_datos', function(req, res) {
+    const userData = req.body;
+    //consulta..
+
+    let query = `select * from fact_automoviles where sk_carro = '${userData.sk_carro}'`;
+
+
+
+    client.query(query, (err, result) => {
+        if (err) {
+            return res.sendStatus(500);
+        }
+        if (result.rowCount == 0) {
+            return res.json({
+                code: 404,
+                mesagge: "No se encontraron datos de la busqueda"
+            })
+        }
+        return res.json({
+            code: 200,
+            data: result.rows[0]
+        })
+
+
+
+    });
 });
 
 app.delete('/api/eliminar_datos', function(req, res) {
-    if (err) return res.sendStatus(500);
+    const userData = req.body;
+    //consulta..
+
+    let query = `delete from fact_automoviles where sk_carro = '${userData.sk_carro}'`;
+
+
+
+    client.query(query, (err, result) => {
+        if (err) {
+            return res.sendStatus(500);
+        }
+        if (result.rowCount == 0) {
+            return res.sendStatus(500);
+        }
+        return res.json({
+            code: 200,
+            data: result.rows[0]
+        })
+
+
+
+    });
 });
 
 app.get('/api/tabla_fact', function(req, res) {
-
-    var query = 'select * from fact_automoviles;';
+    const limit = req.query.limit;
+    const offset = req.query.offset;
+    console.log(limit, offset);
+    var query = `select * from fact_automoviles limit ${limit} offset ${offset}`;
 
     console.log("Obteniendo data...");
     client.query(query, (err, result) => {
