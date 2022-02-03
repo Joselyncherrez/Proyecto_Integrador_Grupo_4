@@ -305,21 +305,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             style = style + "padding: 2px 3px;text-align: center;}";
             style = style + "</style>";
             
-            var win = document.createElement("a");
+            var ventana = window.open('', '', 'height=700,width=700');
 
-            var win = window.open('', '', 'height=700,width=700');
+            ventana.document.write('<html><head>');
+            ventana.document.write('<title>Tabla Consesionaria</title>');   
+            ventana.document.write(style);          
+            ventana.document.write('</head>');
+            ventana.document.write('<body>');
+            ventana.document.write(tabla);         
+            ventana.document.write('</body></html>');
 
-            win.document.write('<html><head>');
-            win.document.write('<title>Tabla Consesionaria</title>');   
-            win.document.write(style);          
-            win.document.write('</head>');
-            win.document.write('<body>');
-            win.document.write(tabla);         
-            win.document.write('</body></html>');
+            ventana.document.close(); 
 
-            win.document.close(); 
-
-            win.print(); 
+            ventana.print(); 
         }
     /*FIN SCRIPT PARA COONVERTIR TABLA A PDF*/
 </script>
