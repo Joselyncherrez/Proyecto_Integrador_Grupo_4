@@ -239,41 +239,64 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     let html = ""
     function insertar() {
         return document.getElementById("contenido_administrador").innerHTML = "<div class='row g-3'>" +
-        "   <input type='text' class='form-control' id='inputSkCarro' placeholder='Ingrese el sk_carro a insertar' required>" +
-        "   <input type='text' class='form-control' id='inputSkRevision' placeholder='Ingrese el sk_revision a insertar' required>"+
-        "   <input type='text' class='form-control' id='inputSkVentas' placeholder='Ingrese el sk_ventas a insertar' required>"+
-        "   <input type='text' class='form-control' id='inputSkConcesionario' placeholder='Ingrese el sk_concesionario a insertar' required>"+
-        "   <input type='text' class='form-control' id='inputSkFecha' placeholder='Ingrese el sk_fecha a insertar' required>"+
-        "   <input type='text' class='form-control' id='inputKilometro' placeholder='Ingrese el kilometraje a insertar' required>"+
-        "   <input type='text' class='form-control' id='inputPrecio' placeholder='Ingrese el precio a insertar' required>"+
-        "   <input type='text' class='form-control' id='inputPotenciaPs' placeholder='Ingrese la potencia a insertar' required>"+
-        "   <input type='text' class='form-control' id='inputCodigoPostal' placeholder='Ingrese el codigo postal a insertar' required>  <br>"+
+        "   <label class='form-label'>Ingrese el sk_carro a insertar</label>"+
+        "   <input type='text' class='form-control' id='inputSkCarro' placeholder='' required>" +
+        "   <label class='form-label'>Ingrese el sk_revision a insertar</label>"+
+        "   <input type='text' class='form-control' id='inputSkRevision' placeholder='' required>"+
+        "   <label class='form-label'>Ingrese el sk_ventas a insertar</label>"+
+        "   <input type='text' class='form-control' id='inputSkVentas' placeholder='' required>"+
+        "   <label class='form-label'>Ingrese el sk_concesionario a insertar</label>"+
+        "   <input type='text' class='form-control' id='inputSkConcesionario' placeholder='' required>"+
+        "   <label class='form-label'>Ingrese el sk_fecha a insertar</label>"+
+        "   <input type='text' class='form-control' id='inputSkFecha' placeholder='' required>"+
+        "   <label class='form-label'>Ingrese el kilometraje a insertar</label>"+
+        "   <input type='text' class='form-control' id='inputKilometro' placeholder='' required>"+
+        "   <label class='form-label'>Ingrese el precio a insertar</label>"+
+        "   <input type='text' class='form-control' id='inputPrecio' placeholder='' required>"+
+        "   <label class='form-label'>Ingrese la potencia a insertar</label>"+
+        "   <input type='text' class='form-control' id='inputPotenciaPs' placeholder='' required>"+
+        "   <label class='form-label'>Ingrese el codigo postal a insertar</label>"+
+        "   <input type='text' class='form-control' id='inputCodigoPostal' placeholder='' required>  <br>"+
         "   <button type='button' class='btn btn-outline-warning' onclick='insertar_registros()'>Aplicar</button>";
     }
 
     function actualizar() {
         return document.getElementById("contenido_administrador").innerHTML = "<div class='row g-3'>" +
-        "   <button type='button' class='btn btn-outline-warning' onclick='buscar_registros()'>Buscar Registro</button>"+
-        "   <input type='text' class='form-control' id='inputSkCarro' placeholder='Ingrese el sk_carro a actualizar' required>" +
-        "   <input type='text' class='form-control' id='inputSkRevision' placeholder='Ingrese el sk_revision a actualizar' required>"+
-        "   <input type='text' class='form-control' id='inputSkVentas' placeholder='Ingrese el sk_ventas a actualizar' required>"+
-        "   <input type='text' class='form-control' id='inputSkConcesionario' placeholder='Ingrese el sk_concesionario a actualizar' required>"+
-        "   <input type='text' class='form-control' id='inputSkFecha' placeholder='Ingrese el sk_fecha a actualizar' required>"+
-        "   <input type='text' class='form-control' id='inputKilometro' placeholder='Ingrese el kilometraje a actualizar' required>"+
-        "   <input type='text' class='form-control' id='inputPrecio' placeholder='Ingrese el precio a actualizar' required>"+
-        "   <input type='text' class='form-control' id='inputPotenciaPs' placeholder='Ingrese la potencia a actualizar' required>"+
-        "   <input type='text' class='form-control' id='inputCodigoPostal' placeholder='Ingrese el codigo postal a actualizar' required> <br> <br>"+
+        "   <button type='button' class='btn btn-outline-warning' onclick='buscar_registros()'>Buscar Registro</button> <br>"+
+        "   <label class='form-label'>Ingrese el sk_carro a actualizar</label>"+
+        "   <input type='text' class='form-control' id='inputSkCarro' placeholder='' required> " +
+        "   <label class='form-label'>Ingrese el sk_revision a actualizar</label>"+
+        "   <input type='text' class='form-control' id='inputSkRevision' placeholder='' required> "+
+        "   <label class='form-label'>Ingrese el sk_ventas a actualizar</label>"+
+        "   <input type='text' class='form-control' id='inputSkVentas' placeholder='' required> "+
+        "   <label class='form-label'>Ingrese el sk_concesionario a actualizar</label>"+
+        "   <input type='text' class='form-control' id='inputSkConcesionario' placeholder='' required> "+
+        "   <label class='form-label'>Ingrese el sk_fecha a actualizar</label>"+
+        "   <input type='text' class='form-control' id='inputSkFecha' placeholder='' required> "+
+        "   <label class='form-label'>Ingrese el kilometraje a actualizar</label>"+
+        "   <input type='text' class='form-control' id='inputKilometro' placeholder='' required> "+
+        "   <label class='form-label'>Ingrese el precio a actualizar</label>"+
+        "   <input type='text' class='form-control' id='inputPrecio' placeholder='' required> "+
+        "   <label class='form-label'>Ingrese la potencia a actualizar</label>"+
+        "   <input type='text' class='form-control' id='inputPotenciaPs' placeholder='' required> "+
+        "   <label class='form-label'>Ingrese el codigo postal a actualizar</label>"+
+        "   <input type='text' class='form-control' id='inputCodigoPostal' placeholder='' required> <br> <br>"+
 
-        "   <input type='text' class='form-control' id='inputKilometroA' placeholder='Ingrese el kilometraje actualizado' required>"+
-        "   <input type='text' class='form-control' id='inputPrecioA' placeholder='Ingrese el precio actualizado' required>"+
-        "   <input type='text' class='form-control' id='inputPotenciaPsA' placeholder='Ingrese la potencia actualizado' required>"+
-        "   <input type='text' class='form-control' id='inputCodigoPostalA' placeholder='Ingrese el codigo postal actualizado' required> <br>"+
+        "   <label class='form-label'>Ingrese el kilometraje actualizado</label>"+
+        "   <input type='text' class='form-control' id='inputKilometroA' placeholder='' required> "+
+        "   <label class='form-label'>Ingrese el precio actualizado</label> <br>"+
+        "   <input type='text' class='form-control' id='inputPrecioA' placeholder='' required> "+
+        "   <label class='form-label'>Ingrese la potencia actualizado</label> <br>"+
+        "   <input type='text' class='form-control' id='inputPotenciaPsA' placeholder='' required> "+
+        "   <label class='form-label'>Ingrese el codigo postal actualizado</label>"+
+        "   <input type='text' class='form-control' id='inputCodigoPostalA' placeholder='' required> <br>"+
         "   <button type='button' class='btn btn-outline-warning' onclick='actualizar_registros()'>Aplicar</button>";
     }
 
     function eliminar() {        
         return document.getElementById("contenido_administrador").innerHTML = "<div class='row g-3'>" +
-        "   <input type='text' class='form-control' id='inputSkCarro' placeholder='Ingrese el sk_carro a eliminar' required>" +
+        "   <label class='form-label'>Ingrese el sk_carro a eliminar</label>"+
+        "   <input type='text' class='form-control' id='inputSkCarro' placeholder='' required> <br>" +
         "   <button type='button' class='btn btn-outline-warning' onclick='eliminar_registros()'>Aplicar</button>";
     }
     </script>

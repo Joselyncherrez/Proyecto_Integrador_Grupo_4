@@ -10,6 +10,9 @@ const { Client } = require('pg');
 const bodyParser = require('body-parser');
 const { query } = require('express');
 
+//libreria de bcrypt
+const bcrypt = require('bcrypt');
+
 //Crear el objeto app
 const app = express();
 

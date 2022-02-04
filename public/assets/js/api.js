@@ -290,7 +290,16 @@ function insertar_registros() {
     return fetch(`${server}/api/insertar_datos`, options)
         .then(response => response.json())
         .then(data => {
-            alert('Registro insertado')
+            alert('Registro insertado');
+            $('#inputSkCarro').val(String(" "));
+            $('#inputSkRevision').val(String(" "));
+            $('#inputSkVentas').val(String(" "));
+            $('#inputSkConcesionario').val(String(" "));
+            $('#inputSkFecha').val(String(" "));
+            $('#inputKilometro').val(String(" "));
+            $('#inputPrecio').val(String(" "));
+            $('#inputPotenciaPs').val(String(" "));
+            $('#inputCodigoPostal').val(String(" "));
         })
         .catch(error => console.error(error));
 
@@ -300,14 +309,6 @@ function eliminar_registros() {
     const server = "http://localhost:8000";
     userData = {
         sk_carro: document.getElementById('inputSkCarro').value,
-        /*sk_revision: document.getElementById('inputSkRevision').value,
-        sk_ventas: document.getElementById('inputSkVentas').value,
-        sk_concesionario: document.getElementById('inputSkConcesionario').value,
-        sk_fecha: document.getElementById('inputSkFecha').value,
-        kilometro: document.getElementById('inputKilometro').value,
-        precio: document.getElementById('inputPrecio').value,
-        potencia_ps: document.getElementById('inputPotenciaPs').value,
-        codigo_postal: document.getElementById('inputCodigoPostal').value,*/
     }
     const options = {
         method: 'DELETE',
@@ -320,7 +321,8 @@ function eliminar_registros() {
     return fetch(`${server}/api/eliminar_datos`, options)
         .then(response => response.json())
         .then(data => {
-            alert('Registro eliminado')
+            alert('Registro eliminado');
+            $('#inputSkCarro').val(String(" "));
         })
         .catch(error => console.error(error));
 
@@ -362,6 +364,16 @@ function buscar_registros() {
             $('#inputPrecio').val(String(element.data.precio));
             $('#inputPotenciaPs').val(String(element.data.potencia_ps));
             $('#inputCodigoPostal').val(String(element.data.codigo_postal));
+
+            $('#inputSkCarro').prop('disabled', true);
+            $('#inputSkRevision').prop('disabled', true);
+            $('#inputSkVentas').prop('disabled', true);
+            $('#inputSkConcesionario').prop('disabled', true);
+            $('#inputSkFecha').prop('disabled', true);
+            $('#inputKilometro').prop('disabled', true);
+            $('#inputPrecio').prop('disabled', true);
+            $('#inputPotenciaPs').prop('disabled', true);
+            $('#inputCodigoPostal').prop('disabled', true);
         })
         .catch(error => console.error(error));
 }
@@ -395,7 +407,31 @@ function actualizar_registros() {
     return fetch(`${server}/api/actualizar_datos`, options)
         .then(response => response.json())
         .then(data => {
-            alert('Registro actualizado')
+            alert('Registro actualizado');
+            $('#inputSkCarro').prop('disabled', false);
+            $('#inputSkRevision').prop('disabled', false);
+            $('#inputSkVentas').prop('disabled', false);
+            $('#inputSkConcesionario').prop('disabled', false);
+            $('#inputSkFecha').prop('disabled', false);
+            $('#inputKilometro').prop('disabled', false);
+            $('#inputPrecio').prop('disabled', false);
+            $('#inputPotenciaPs').prop('disabled', false);
+            $('#inputCodigoPostal').prop('disabled', false);
+
+            $('#inputSkCarro').val(String(" "));
+            $('#inputSkRevision').val(String(" "));
+            $('#inputSkVentas').val(String(" "));
+            $('#inputSkConcesionario').val(String(" "));
+            $('#inputSkFecha').val(String(" "));
+            $('#inputKilometro').val(String(" "));
+            $('#inputPrecio').val(String(" "));
+            $('#inputPotenciaPs').val(String(" "));
+            $('#inputCodigoPostal').val(String(" "));
+
+            $('#inputKilometroA').val(String(" "));
+            $('#inputPrecioA').val(String(" "));
+            $('#inputPotenciaPsA').val(String(" "));
+            $('#inputCodigoPostalA').val(String(" "));
         })
         .catch(error => console.error(error));
 
