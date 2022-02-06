@@ -58,7 +58,7 @@ app.get('/api/carros', function(req, res) {
     if (req.query.tipoCombustible != undefined && req.query.tipoCombustible != '')
         query += " AND tipo_combustible = '" + req.query.tipoCombustible + "'";
 
-    query += " order by pk_carro asc";
+    query += ` order by pk_carro asc limit ${limit} offset ${offset}`;
 
     console.log(query);
     console.log("Obteniendo data...");
@@ -188,7 +188,10 @@ app.delete('/api/eliminar_datos', function(req, res) {
             return res.sendStatus(500);
         }
         if (result.rowCount == 0) {
-            return res.sendStatus(500);
+            return res.json({
+                code: 404,
+                mesagge: "No se encontró ese sk_carro en la base de datos"
+            })
         }
         return res.json({
             code: 200,

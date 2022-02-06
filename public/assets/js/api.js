@@ -93,7 +93,7 @@ let offset = 0;
 let page = 0;
 const limit = 10;
 
-/*function addpaginasvista() {
+function addpaginasvista() {
     if (page != 0) {
         offset = offset + limit;
     }
@@ -109,7 +109,7 @@ function respaginasvista() {
         page = 0;
     }
     filtrarCarros(limit, offset)
-}*/
+}
 
 function filtrarCarros(limit, offset) {
 
@@ -130,7 +130,7 @@ function filtrarCarros(limit, offset) {
         tipoCombustible: $("#tiposCombustibles").val(),
     }
 
-    $.ajax(`${server}/api/carros?marca=${values.marca}&modelo=${values.modelo}&tipoVehiculo=${values.tipoVehiculo}&tipoCombustible=${values.tipoCombustible}`, options, function()
+    $.ajax(`${server}/api/carros?marca=${values.marca}&modelo=${values.modelo}&tipoVehiculo=${values.tipoVehiculo}&tipoCombustible=${values.tipoCombustible}&limit=${limit}&offset=${offset}`, options, function()
 
             {}
 
@@ -302,7 +302,10 @@ function eliminar_registros() {
 
     return fetch(`${server}/api/eliminar_datos`, options)
         .then(response => response.json())
-        .then(data => {
+        .then(element => {
+            if (element.code == '404') {
+                return alert("No se encontró ese sk_carro en la base de datos");
+            }
             alert('Registro eliminado');
             $('#inputSkCarro').val(String(" "));
         })
