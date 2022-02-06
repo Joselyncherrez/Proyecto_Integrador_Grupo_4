@@ -1,10 +1,9 @@
 require('./config/config');
 
-//Exportamos librerias
+//Libreria de express
 const express = require('express');
+//Libreria de handelbars
 const hbs = require('hbs');
-//libreria pg
-const { Client } = require('pg');
 
 //Crear el objeto app
 const app = express();

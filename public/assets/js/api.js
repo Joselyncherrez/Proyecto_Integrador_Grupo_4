@@ -6,13 +6,9 @@ function obtenerMarcas(userData = {}) {
             'Content-Type': 'application/json'
         })
     }
-    $.ajax(`${server}/api/marcas`, options, function(data) {
-
-
-        })
+    $.ajax(`${server}/api/marcas`, options, function(data) {})
         .done((data) => {
             data.forEach(element => {
-
                 $('#marcas').append(`<option value="${element.marca_carro}">${element.marca_carro}</option>`);
             });
         })
@@ -20,9 +16,7 @@ function obtenerMarcas(userData = {}) {
 
             console.log(err);
         })
-
 }
-//document.getElementById('inputPassword').value == 'ciclo59' && document.getElementById('inputEmail').value == 'usuario1'
 
 function obtenerModelos() {
     const server = "http://localhost:8000";
@@ -36,19 +30,14 @@ function obtenerModelos() {
     $("#marcas").on('change', function(e) {
         let marca = this.value;
 
-        $.ajax(`${server}/api/modelos`, options, function(data) {
-
-
-            })
+        $.ajax(`${server}/api/modelos`, options, function(data) {})
             .done((data) => {
                 $('#modelos').find('option').remove()
                 $('#modelos').append('<option value="">Seleccionar modelo</option>')
                 const filterData = data.filter((element) => {
                     return element.marca_carro == marca;
                 })
-
                 filterData.forEach(element => {
-
                     $('#modelos').append(`<option value="${element.modelo_carro}">${element.modelo_carro}</option>`);
                 });
             })
@@ -69,12 +58,9 @@ function obtenerTiposVehiculos() {
         })
     }
 
-    $.ajax(`${server}/api/tipo/vehiculos`, options, function(data) {
-
-        })
+    $.ajax(`${server}/api/tipo/vehiculos`, options, function(data) {})
         .done((data) => {
             data.forEach(element => {
-
                 $('#tiposVehiculos').append(`<option value="${element.tipo_vehiculo}">${element.tipo_vehiculo}</option>`);
             });
         })
@@ -92,12 +78,9 @@ function obtenerTiposCombustibles() {
         })
     }
 
-    $.ajax(`${server}/api/tipo/combustibles`, options, function(data) {
-
-        })
+    $.ajax(`${server}/api/tipo/combustibles`, options, function(data) {})
         .done((data) => {
             data.forEach(element => {
-
                 $('#tiposCombustibles').append(`<option value="${element.tipo_combustible}">${element.tipo_combustible}</option>`);
             });
         })
@@ -145,7 +128,6 @@ function filtrarCarros(limit, offset) {
         modelo: $("#modelos").val(),
         tipoVehiculo: $("#tiposVehiculos").val(),
         tipoCombustible: $("#tiposCombustibles").val(),
-
     }
 
     $.ajax(`${server}/api/carros?marca=${values.marca}&modelo=${values.modelo}&tipoVehiculo=${values.tipoVehiculo}&tipoCombustible=${values.tipoCombustible}`, options, function()

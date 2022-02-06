@@ -1,15 +1,16 @@
 require('./config/config');
 
 //Exportamos librerias
+//libreria express
 const express = require('express');
+//libreria handelbars
 const hbs = require('hbs');
+//libreria cors
 const cors = require('cors');
-
 //libreria pg
 const { Client } = require('pg');
+//libreria body-parser
 const bodyParser = require('body-parser');
-const { query } = require('express');
-
 //libreria de bcrypt
 const bcrypt = require('bcrypt');
 
@@ -32,11 +33,9 @@ const client = new Client({
 client.connect();
 
 app.post('/api/login', function(req, res) {
-
     const userData = req.body;
     //consulta..
     let query = `select * from usuarios where usuario = '${userData.user}' and contraseña = '${userData.password}' `;
-
 
     client.query(query, (err, result) => {
         if (err) {
@@ -47,15 +46,11 @@ app.post('/api/login', function(req, res) {
                 code: 500,
                 message: "Usuario no existe"
             })
-
         }
         return res.json({
             code: 200,
             data: result.rows[0]
         })
-
-
-
     });
 });
 
@@ -63,9 +58,8 @@ app.post('/api/registrar', function(req, res) {
 
     const userData = req.body;
     //consulta..
-    let query = ` insert into usuarios (usuario, contraseña, rol) values ('${userData.user}', '${userData.password}','USER_ROLE')`;
-
-
+    let query = ` insert into usuarios (usuario, contraseña, rol) values ('${userData.user}', 
+    '${userData.password}','USER_ROLE')`;
 
     client.query(query, (err, result) => {
         if (err) {
@@ -78,9 +72,6 @@ app.post('/api/registrar', function(req, res) {
             code: 200,
             data: result.rows[0]
         })
-
-
-
     });
 });
 

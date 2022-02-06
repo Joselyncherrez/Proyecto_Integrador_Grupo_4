@@ -1,9 +1,7 @@
-var x = 3;
 const server = "http://localhost:9000";
 
 
 function loginUser() {
-
     userData = {
         user: document.getElementById('inputEmail').value,
         password: document.getElementById('inputPassword').value
@@ -15,7 +13,6 @@ function loginUser() {
             'Content-Type': 'application/json'
         })
     }
-
     return fetch(`${server}/api/login`, options)
         .then(response => response.json())
         .then(data => {
@@ -25,10 +22,8 @@ function loginUser() {
             if (data.data.rol == "ADMIN_ROLE") {
                 window.location = "http://localhost:3000/administrador"
             }
-
         })
         .catch(error => console.error(error));
-
 }
 //document.getElementById('inputPassword').value == 'ciclo59' && document.getElementById('inputEmail').value == 'usuario1'
 function registrar() {

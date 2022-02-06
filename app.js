@@ -1,13 +1,18 @@
 require('./config/config');
 
 //Exportamos librerias
+//libreria express
 const express = require('express');
+//libreria handelbars
 const hbs = require('hbs');
+//libreria cors
 const cors = require('cors');
-
 //libreria pg
 const { Client } = require('pg');
+//libreria body-parser
 const bodyParser = require('body-parser');
+//libreria de bcrypt
+const bcrypt = require('bcrypt');
 
 //Crear el objeto app
 const app = express();
@@ -24,18 +29,15 @@ const client = new Client({
     password: 'Admin*1234',
     port: 5432,
 });
-
 client.connect();
 
 app.post('/api/login', function(req, res) {
-
     const userData = req.body;
     console.log(userData);
 });
 
 
 app.get('/api/carros', function(req, res) {
-
     console.info("query params:")
     console.info(req.query);
     const limit = req.query.limit;
@@ -56,19 +58,15 @@ app.get('/api/carros', function(req, res) {
     if (req.query.tipoCombustible != undefined && req.query.tipoCombustible != '')
         query += " AND tipo_combustible = '" + req.query.tipoCombustible + "'";
 
-
     query += " order by pk_carro asc";
 
     console.log(query);
     console.log("Obteniendo data...");
     client.query(query, (err, result) => {
-
         if (err) return res.sendStatus(500);
-
         console.log("Data encontrada: " + result.rowCount);
         return res.json(result.rows);
     });
-
 });
 
 app.get('/api/modelos', function(req, res) {
@@ -138,10 +136,11 @@ app.get('/api/tipo/combustibles', function(req, res) {
 app.post('/api/insertar_datos', function(req, res) {
     const userData = req.body;
     //consulta..
-
-    let query = `insert into fact_automoviles (sk_carro, sk_revision, sk_ventas, sk_concesionario,sk_fecha, kilometro, precio, potencia_ps, codigo_postal) values ('${userData.sk_carro}', '${userData.sk_revision}','${userData.sk_ventas}', '${userData.sk_concesionario}','${userData.sk_fecha}', '${userData.kilometro}','${userData.precio}', '${userData.potencia_ps}','${userData.codigo_postal}')`;
-
-
+    let query = `insert into fact_automoviles (sk_carro, sk_revision, sk_ventas, sk_concesionario,
+    sk_fecha, kilometro, precio, potencia_ps, codigo_postal) 
+    values ('${userData.sk_carro}', '${userData.sk_revision}','${userData.sk_ventas}', 
+    '${userData.sk_concesionario}','${userData.sk_fecha}', '${userData.kilometro}',
+    '${userData.precio}', '${userData.potencia_ps}','${userData.codigo_postal}')`;
 
     client.query(query, (err, result) => {
         if (err) {
@@ -154,20 +153,13 @@ app.post('/api/insertar_datos', function(req, res) {
             code: 200,
             data: result.rows[0]
         })
-
-
-
     });
-
 });
 
 app.post('/api/buscar_datos', function(req, res) {
     const userData = req.body;
     //consulta..
-
     let query = `select * from fact_automoviles where sk_carro = '${userData.sk_carro}'`;
-
-
 
     client.query(query, (err, result) => {
         if (err) {
@@ -183,19 +175,13 @@ app.post('/api/buscar_datos', function(req, res) {
             code: 200,
             data: result.rows[0]
         })
-
-
-
     });
 });
 
 app.delete('/api/eliminar_datos', function(req, res) {
     const userData = req.body;
     //consulta..
-
     let query = `delete from fact_automoviles where sk_carro = '${userData.sk_carro}'`;
-
-
 
     client.query(query, (err, result) => {
         if (err) {
@@ -208,9 +194,6 @@ app.delete('/api/eliminar_datos', function(req, res) {
             code: 200,
             data: result.rows[0]
         })
-
-
-
     });
 });
 
@@ -235,9 +218,14 @@ app.put('/api/actualizar_datos', function(req, res) {
     const userData = req.body;
     //consulta..
 
-    let query = `update fact_automoviles set kilometro='${userData.kilometroA}', precio='${userData.precioA}', potencia_ps='${userData.potencia_psA}',codigo_postal='${userData.codigo_postalA}' 
-     where sk_carro='${userData.sk_carro}' and sk_revision='${userData.sk_revision}' and sk_ventas='${userData.sk_ventas}' and sk_concesionario='${userData.sk_concesionario}' and sk_fecha='${userData.sk_fecha}' and kilometro='${userData.kilometro}' and precio='${userData.precio}' and potencia_ps='${userData.potencia_ps}' and codigo_postal='${userData.codigo_postal}'`;
-
+    let query = `update fact_automoviles set kilometro='${userData.kilometroA}', 
+    precio='${userData.precioA}', potencia_ps='${userData.potencia_psA}',
+    codigo_postal='${userData.codigo_postalA}' 
+     where sk_carro='${userData.sk_carro}' and sk_revision='${userData.sk_revision}' 
+     and sk_ventas='${userData.sk_ventas}' and sk_concesionario='${userData.sk_concesionario}' 
+     and sk_fecha='${userData.sk_fecha}' and kilometro='${userData.kilometro}' 
+     and precio='${userData.precio}' and potencia_ps='${userData.potencia_ps}' 
+     and codigo_postal='${userData.codigo_postal}'`;
 
     client.query(query, (err, result) => {
         if (err) {
@@ -250,9 +238,6 @@ app.put('/api/actualizar_datos', function(req, res) {
             code: 200,
             data: result.rows[0]
         })
-
-
-
     });
 });
 
