@@ -34,6 +34,7 @@ client.connect();
 
 app.post('/api/login', function(req, res) {
     const userData = req.body;
+
     //consulta..
     let query = `select * from usuarios where usuario = '${userData.user}' and contraseña = '${userData.password}' `;
 
@@ -74,9 +75,6 @@ app.post('/api/registrar', function(req, res) {
         })
     });
 });
-
-
-
 
 var sendError = function(err) {
     console.log("Error al obtener la data");
