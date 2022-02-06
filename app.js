@@ -26,7 +26,7 @@ const client = new Client({
     user: 'postgres',
     host: 'localhost',
     database: 'Dimensional_Autos',
-    password: 'Admin*1234',
+    password: '12345',
     port: 5432,
 });
 client.connect();
