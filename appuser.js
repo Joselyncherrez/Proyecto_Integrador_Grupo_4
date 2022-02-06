@@ -26,7 +26,7 @@ const client = new Client({
     user: 'postgres',
     host: 'localhost',
     database: 'Usuarios',
-    password: '12345',
+    password: 'Admin*1234',
     port: 5432,
 });
 
@@ -44,7 +44,7 @@ app.post('/api/login', function(req, res) {
         if (result.rowCount == 0) {
             return res.json({
                 code: 500,
-                message: "Usuario no existe"
+                message: "El usuario ingresado no está registrado"
             })
         }
         return res.json({
@@ -58,8 +58,7 @@ app.post('/api/registrar', function(req, res) {
 
     const userData = req.body;
     //consulta..
-    let query = ` insert into usuarios (usuario, contraseña, rol) values ('${userData.user}', 
-    '${userData.password}','USER_ROLE')`;
+    let query = ` insert into usuarios (usuario, contraseña, rol) values ('${userData.user}', '${userData.password.bcrypt}','USER_ROLE')`;
 
     client.query(query, (err, result) => {
         if (err) {

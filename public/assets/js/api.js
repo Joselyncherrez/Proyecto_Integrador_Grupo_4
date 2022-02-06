@@ -302,7 +302,10 @@ function eliminar_registros() {
 
     return fetch(`${server}/api/eliminar_datos`, options)
         .then(response => response.json())
-        .then(data => {
+        .then(element => {
+            if (element.code == '404') {
+                return alert("No se encontró ese sk_carro en la base de datos");
+            }
             alert('Registro eliminado');
             $('#inputSkCarro').val(String(" "));
         })
