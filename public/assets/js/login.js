@@ -28,7 +28,7 @@ function loginUser() {
         })
         .catch(error => console.error(error));
 }
-//document.getElementById('inputPassword').value == 'ciclo59' && document.getElementById('inputEmail').value == 'usuario1'
+
 function registrar() {
     userData = {
         user: document.getElementById('inputEmail').value,

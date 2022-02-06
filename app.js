@@ -26,7 +26,7 @@ const client = new Client({
     user: 'postgres',
     host: 'localhost',
     database: 'Dimensional_Autos',
-    password: '12345',
+    password: 'Admin*1234',
     port: 5432,
 });
 client.connect();
@@ -58,7 +58,7 @@ app.get('/api/carros', function(req, res) {
     if (req.query.tipoCombustible != undefined && req.query.tipoCombustible != '')
         query += " AND tipo_combustible = '" + req.query.tipoCombustible + "'";
 
-    query += " order by pk_carro asc";
+    query += ` order by pk_carro asc limit ${limit} offset ${offset}`;
 
     console.log(query);
     console.log("Obteniendo data...");
