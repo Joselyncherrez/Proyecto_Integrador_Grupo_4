@@ -16,7 +16,7 @@ function loginUser() {
     return fetch(`${server}/api/login`, options)
         .then(response => response.json())
         .then(data => {
-            if (data.code == '500') {
+            if (data.code == '500' || data.code == '503') {
                 return alert("El usuario ingresado no está registrado / O la contraseña es incorrecta");
             }
             if (data.data.rol == "USER_ROLE") {
